@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" role="img" aria-label="Заснеженный Люсхольм вечером">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#1b3048"/><stop offset="1" stop-color="#29455a"/></linearGradient><linearGradient id="snow" x2="0" y2="1"><stop stop-color="#f2f0e7"/><stop offset="1" stop-color="#afcbd1"/></linearGradient><linearGradient id="cottage" x2="0" y2="1"><stop stop-color="#486474"/><stop offset="1" stop-color="#213c4d"/></linearGradient><radialGradient id="light"><stop stop-color="#ffe8a2"/><stop offset="1" stop-color="#c78d60"/></radialGradient></defs>
+<path d="M0 330Q160 260 330 305T680 296T1200 295V580H0Z" fill="#294359"/>
+<path d="M0 399Q145 354 335 385T720 376T1200 359V580H0Z" fill="#385469"/>
+<g stroke="#a6bec2" stroke-width="4" stroke-linejoin="round">
+<path d="M50 375 50 293 140 243 225 291 225 383Z" fill="#3d5867"/><path d="M37 294 140 226 237 295" stroke="#f1eee7" stroke-width="13" fill="none"/><path d="M85 320h34v42H85zM155 320h34v42h-34z" fill="url(#light)" stroke="#425461" stroke-width="7"/>
+<path d="M252 367V285H360V367Z" fill="#526575"/><path d="M242 286 308 236 372 286Z" fill="#355162"/><path d="M239 286 306 230 377 286" stroke="#ecf0e8" stroke-width="11" fill="none"/><path d="M276 305h22v32h-22zM322 305h22v32h-22z" fill="#f0c485" stroke="#2c4150" stroke-width="6"/>
+<path d="M445 399V294L525 251 603 295V398Z" fill="#3e5363"/><path d="M435 295 525 239 615 295" stroke="#e9efea" stroke-width="12" fill="none"/><path d="M465 324h28v38h-28zM551 324h28v38h-28z" fill="#f5cc8e" stroke="#2f4656" stroke-width="7"/>
+<path d="M683 392V266H783V391Z" fill="#576574"/><path d="M675 265 734 217 792 266" fill="#273e4d"/><path d="M667 265 734 212 802 265" stroke="#f4f1e7" stroke-width="11" fill="none"/><path d="M709 289h25v35h-25zM752 289h25v35h-25z" fill="#f1bf79" stroke="#37495a" stroke-width="6"/>
+<path d="M864 388V305L936 258 1010 302V390Z" fill="#405c6d"/><path d="M857 306 936 248 1019 307" stroke="#f5efe4" stroke-width="12" fill="none"/><path d="M897 326h29v37h-29zM956 326h28v37h-28z" fill="#f5d39a" stroke="#324959" stroke-width="7"/>
+<path d="M1040 405V315H1146V408Z" fill="#475e6b"/><path d="M1032 313 1094 268 1155 313" stroke="#eef1e9" stroke-width="12" fill="none"/><path d="M1071 338h24v34h-24zM1114 338h23v34h-23z" fill="#f0be81" stroke="#2e4655" stroke-width="6"/>
+</g>
+<g stroke="#173f47" stroke-width="8" stroke-linecap="round" fill="none"><path d="M23 437v-111m-40 58 40-59 35 59m-64 30 30-56 30 56M399 440V285m-42 67 42-68 42 68m-80 25 38-62 40 62M825 450V320m-39 61 39-60 42 60m-77 28 35-55 39 55M1187 455V340m-30 55 30-57 31 57"/></g>
+<g stroke="#c2c6ba" stroke-width="4" stroke-linecap="round"><path d="M22 330 0 360m23-30 20 29m357-68-25 37m25-37 25 38m424-7-24 35m24-35 24 33"/></g>
+<path d="M0 439Q145 404 320 438T680 437T1200 431V580H0Z" fill="url(#snow)" opacity=".9"/>
+<path d="M0 460Q160 449 320 465T740 455T1200 462" fill="none" stroke="#fff9eb" opacity=".7" stroke-width="5"/>
+<g transform="translate(175 398)"><path d="M0 0v67" stroke="#253e4b" stroke-width="6"/><path d="M-11 0Q0-27 11 0" stroke="#b99b79" stroke-width="5" fill="none"/><ellipse cy="4" rx="12" ry="17" fill="#ffdea0"/><ellipse cy="7" rx="30" ry="36" fill="#edc37a" opacity=".17"/></g>
+<g transform="translate(1025 396)"><path d="M0 0v67" stroke="#253e4b" stroke-width="6"/><path d="M-11 0Q0-27 11 0" stroke="#b99b79" stroke-width="5" fill="none"/><ellipse cy="4" rx="12" ry="17" fill="#ffdea0"/><ellipse cy="7" rx="30" ry="36" fill="#edc37a" opacity=".17"/></g>
+</svg>
