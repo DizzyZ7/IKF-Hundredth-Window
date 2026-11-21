@@ -65,3 +65,17 @@
 /* 0.4.1: do not offer to relight windows that are already illuminated. */
 .light-already-lit{display:inline-flex;align-items:center;color:#ffe0a9;background:rgba(244,186,101,.12);border:1px solid rgba(244,186,101,.35);padding:10px 13px;font-size:12px;border-radius:4px;line-height:1.5;max-width:100%}
 #light-random:disabled{opacity:.72;cursor:default;transform:none;box-shadow:none}
+
+/* V0.5 original winter emblem and calmer layout */
+.brand-emblem,.footer-mark{display:block;object-fit:contain;flex:none;border-radius:50%;filter:drop-shadow(0 3px 9px #e4bf8030)}
+.brand-emblem{width:45px;height:45px}.footer-brand{display:flex;align-items:center;gap:12px;line-height:1.45}.footer-mark{width:34px;height:34px}
+.intro-glyph.intro-emblem{width:170px;height:170px;aspect-ratio:1;border:0;transform:none;display:block;border-radius:50%;overflow:hidden}.intro-emblem img{display:block;width:100%;height:100%;object-fit:cover}
+.symbol-panel{width:min(300px,100%);aspect-ratio:1;justify-self:center;display:grid;place-items:center;position:relative}
+.symbol-panel:before{content:"";position:absolute;inset:-12%;border-radius:50%;border:1px solid #eac68b55}
+.symbol-panel img{display:block;width:100%;height:100%;object-fit:contain;border-radius:50%;filter:drop-shadow(0 12px 24px #020b1a88)}
+.join-divider{display:flex;align-items:center;justify-content:center;gap:15px;margin-bottom:28px}.join-divider span{width:56px;height:1px;background:linear-gradient(90deg,transparent,#e4c18a,transparent)}.join-divider i{width:10px;height:10px;border:1px solid #e4c18a;transform:rotate(45deg)}
+.door:after{content:"";position:absolute;right:7px;top:22px;width:4px;height:4px;background:#e6c18e;border-radius:50%;box-shadow:0 0 7px #e6c18e}
+.window-symbol{font:29px Georgia,serif}.hero{background:radial-gradient(ellipse at 74% 43%,#253e51 0,transparent 44%),linear-gradient(150deg,#0d192b,#192e41 72%,#142738)}.aurora{opacity:.09}
+.scene:before{background:radial-gradient(ellipse at 50% 69%,#d5a35c1b,transparent 55%)}
+.story-card:after{content:"";width:42px;height:62px;right:16px;bottom:12px;border:2px solid #a7bcb95c;border-radius:21px 21px 3px 3px;opacity:.55}.story-card:before{content:"";position:absolute;right:36px;bottom:13px;width:2px;height:60px;background:#a7bcb95c}.place-icon{font-size:88px;opacity:.67}
+@media(max-width:800px){.intro-glyph.intro-emblem{width:115px;height:115px}.symbol-panel{width:210px}}@media(max-width:530px){.brand-emblem{width:39px;height:39px}.intro-glyph.intro-emblem{width:100px;height:100px}.symbol-panel{width:180px}.footer-mark{width:31px;height:31px}}

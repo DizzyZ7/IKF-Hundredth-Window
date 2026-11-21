@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101c2c"><meta name="application-version" content="0.4.1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101c2c"><meta name="application-version" content="0.5.0">
 <meta name="description" content="Свет в сотом окне — коллективный новогодний ориджинал ИКФ. Добро пожаловать в Люсхольм.">
 <meta property="og:title" content="Свет в сотом окне · ИКФ"><meta property="og:description" content="У каждого своя история. Но свет один на всех.">
 <title>Свет в сотом окне · ИКФ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css?v=20261121-041"><script src="assets/app.js?v=20261121-041" defer></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css?v=20261121-05"><script src="assets/app.js?v=20261121-05" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 <div class="snowfall" id="snowfall" aria-hidden="true"></div>
 <header class="site-header">
-<a class="brand" href="#top"><span class="brand-symbol">✳</span><span><strong>ИКФ</strong><small>новогодняя история</small></span></a>
+<a class="brand" href="#top"><img class="brand-emblem" src="assets/ikf-mark.svg" alt="" width="45" height="45"><span><strong>ИКФ</strong><small>новогодняя история</small></span></a>
 <nav class="nav" aria-label="Навигация"><a href="#world">О Люсхольме</a><a href="#chapter">Первая глава</a><a href="#places">Город</a><a href="#stories">Истории</a><a href="#mystery">Тайна</a></nav>
 <a class="header-link" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Стать автором ↗</a><button class="snow-toggle" id="snow-toggle" type="button" aria-pressed="true" title="Включить или выключить снег">❄ <span>Снег</span></button>
 </header>
@@ -21,7 +21,7 @@
 <section class="hero" id="top">
 <div class="container hero-layout">
 <div class="hero-copy">
-<div class="eyebrow">✦ &nbsp; Люсхольм · 31 декабря 2026</div><div class="edition-pill" aria-label="Новая версия сайта">✧ НОВАЯ РЕДАКЦИЯ · 0.4.1</div>
+<div class="eyebrow">Люсхольм · 31 декабря 2026</div><div class="edition-pill" aria-label="Новая версия сайта">ЗИМНЯЯ РЕДАКЦИЯ · 0.5</div>
 <p class="kicker">Коллективный новогодний ориджинал ИКФ</p>
 <h1>Свет<br>в <em>сотом</em> окне</h1>
 <p class="lead">В одном северном городке есть дом с девяноста девятью квартирами. Но перед Новым годом жильцы получают приглашения из сотой.</p>
@@ -31,15 +31,15 @@
 <form class="window-finder" id="window-finder" aria-label="Найти квартиру"><label for="window-number">Найти квартиру</label><input id="window-number" name="number" type="number" min="1" max="99" inputmode="numeric" placeholder="1–99" required><button type="submit" title="Открыть квартиру">→</button></form></div>
 </div>
 <div class="scene" id="house" aria-label="Интерактивный дом Альбатрос">
-<div class="moon"></div><div class="aurora"></div><div class="star-field">✦ &nbsp; · &nbsp; ✧ &nbsp; · &nbsp; ✦</div>
+<div class="moon"></div><div class="aurora"></div>
 <div class="hill hill-back"></div><div class="hill hill-front"></div>
 <div class="pine pine-a"></div><div class="pine pine-b"></div><div class="pine pine-c"></div>
-<div class="house"><div class="roof"></div><div class="wall"><div class="house-label">АЛЬБАТРОС &nbsp; ✦ &nbsp; МАЯЧНАЯ, 7</div><div class="windows" id="window-grid" role="group" aria-label="Окна дома"></div><div class="door">✦</div></div></div>
-<div class="snowbank"></div><div class="scene-hint">✦ &nbsp; Нажмите на любое окно</div><div class="scene-eira">✧ &nbsp; Эйра Линдт · №70 · 7-й этаж</div><div class="house-floor-guide" aria-hidden="true">9 <span>↓</span> 1</div>
+<div class="house"><div class="roof"></div><div class="wall"><div class="house-label">АЛЬБАТРОС · МАЯЧНАЯ, 7</div><div class="windows" id="window-grid" role="group" aria-label="Окна дома"></div><div class="door" aria-hidden="true"></div></div></div>
+<div class="snowbank"></div><div class="scene-hint">Нажмите на любое окно</div><div class="scene-eira">Эйра Линдт · №70 · 7-й этаж</div><div class="house-floor-guide" aria-hidden="true">9 <span>↓</span> 1</div>
 </div></div>
 <div class="scroll-cue">Листайте вниз &nbsp; ↓</div>
 </section>
-<section class="section intro" id="world"><div class="container intro-layout"><div class="intro-glyph">✧<small>ГОРОД<br>НА СЕВЕРЕ</small></div><div>
+<section class="section intro" id="world"><div class="container intro-layout"><div class="intro-glyph intro-emblem"><img src="assets/ikf-mark.svg" alt="Символ ИКФ — хранитель огней" width="150" height="150"></div><div>
 <p class="kicker">Там, где оставляют свет</p><h2>Добро пожаловать<br>в <em>Люсхольм</em></h2>
 <div class="columns"><p>Небольшой вымышленный североевропейский город на берегу холодного залива. Здесь пахнет кардамоном, хвойным лесом и морским ветром. Зимой сумерки приходят рано, а в окнах зажигают лампы для тех, кто ищет дорогу домой.</p><p>Вечером 31 декабря в доме «Альбатрос» гаснет электричество. Вскоре появляются приглашения от квартиры №100, которой нет ни на одном плане. Кто их оставил? Кого в ней ждут? И почему именно сегодня?</p></div>
 <div class="tags"><span>Северная сказка</span><span>Мягкая мистика</span><span>Теплые истории</span><span>Одна ночь</span></div>
@@ -62,9 +62,9 @@
 <section class="section stories-section" id="stories"><div class="container">
 <div class="section-head"><div><p class="kicker">Голоса Люсхольма</p><h2>За каждым окном — <em>жизнь</em></h2></div><p>Авторы ИКФ создают героев, которые встречаются, ошибаются, помогают друг другу и становятся частью одной новогодней ночи.</p></div>
 <div class="story-controls"><label class="sr-only" for="story-search">Поиск по герою, главе или автору</label><input id="story-search" type="search" placeholder="Поиск героя, главы или автора..." autocomplete="off"><label class="sr-only" for="story-filter">Местоположение</label><select id="story-filter"><option value="all">Все истории</option><option value="house">Дом «Альбатрос»</option><option value="city">Другие места города</option></select></div><p class="story-count" id="story-count" aria-live="polite"></p><div class="story-grid" id="story-grid"></div>
-<p class="story-note">✳ &nbsp; Здесь не бывает «слишком поздно» для новой истории. Число участников не ограничено.</p>
+<p class="story-note">Здесь не бывает «слишком поздно» для новой истории. Число участников не ограничено.</p>
 </div></section>
-<section class="section light-section"><div class="container light-layout"><div class="glowing-orb" aria-hidden="true">✦</div><div>
+<section class="section light-section"><div class="container light-layout"><div class="symbol-panel" aria-hidden="true"><img src="assets/ikf-mark.svg" alt="" width="260" height="260"></div><div>
 <p class="kicker">Маленькая традиция</p><h2>Оставь немного <em>тепла</em></h2><p>В Люсхольме свет в окне означает: здесь тебе будут рады. Выберите любое окно «Альбатроса» или зажгите случайное. Иногда этого достаточно, чтобы чья-то ночь стала немного светлее.</p>
 <div class="light-actions"><button type="button" id="light-random" class="btn primary">Зажечь случайное окно ✧</button><span id="light-status" aria-live="polite">Ваш первый огонек еще впереди</span></div>
 <small>Огоньки сохраняются только в вашем браузере. Это не общий счетчик посетителей.</small>
@@ -72,15 +72,15 @@
 <section class="section mystery-section" id="mystery"><div class="container mystery-layout">
 <div class="envelope" aria-hidden="true"><div class="envelope-top"></div><div class="seal">100</div></div>
 <div><p class="kicker">Последний конверт</p><h2>Не все окна<br>видны <em>с улицы</em></h2><p>Разгадка будет ждать вас в заключительной главе. А пока у нас есть время познакомиться с теми, кто однажды решился открыть соседу дверь.</p>
-<div class="date"><span>✳</span><div><strong>31 декабря 2026</strong><small>Финальная глава и подарок читателям</small></div></div>
+<div class="date"><span class="window-symbol">◫</span><div><strong>31 декабря 2026</strong><small>Финальная глава и подарок читателям</small></div></div>
 <p class="sealed">✦ &nbsp; Сюрприз еще не опубликован. Мы бережем его до праздника.</p></div>
 </div></section>
-<section class="section join-section" id="join"><div class="container"><div class="stars">✦ &nbsp; ✧ &nbsp; ✦</div>
+<section class="section join-section" id="join"><div class="container"><div class="join-divider" aria-hidden="true"><span></span><i></i><span></span></div>
 <p class="kicker">И для вашей истории найдется окно</p><h2>А если следующий<br>огонек — <em>ваш?</em></h2>
 <p>Придумайте героя, напишите одну главу и станьте частью новогоднего ориджинала ИКФ. Опыт не важен. Главное — желание поделиться доброй историей.</p>
 <a class="btn primary" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Присоединиться к авторам ↗</a>
 <small>Без ограничения числа авторов · Без конкурса · С указанием авторства</small></div></section>
 </main>
-<footer><div class="container footer"><a href="#top" class="footer-brand">✳ &nbsp; СВЕТ В СОТОМ ОКНЕ</a><p>Истории ИКФ · 2026<br>Создано с теплом для тех, кто рядом.<br><span class="build-stamp">Редакция 0.4.1 · 21.11.2026</span></p><div><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Чат ИКФ ↗</a><a href="https://github.com/DizzyZ7/IKF-Hundredth-Window" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+<footer><div class="container footer"><a href="#top" class="footer-brand"><img class="footer-mark" src="assets/ikf-mark.svg" alt="" width="34" height="34">СВЕТ В СОТОМ ОКНЕ</a><p>Истории ИКФ · 2026<br>Создано с теплом для тех, кто рядом.<br><span class="build-stamp">Редакция 0.5 · 21.11.2026</span></p><div><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Чат ИКФ ↗</a><a href="https://github.com/DizzyZ7/IKF-Hundredth-Window" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
 <dialog id="window-dialog" class="window-dialog" aria-labelledby="dialog-title"><button type="button" id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div class="dialog-number" id="dialog-number"></div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><p class="dialog-meta" id="dialog-meta"></p><div id="dialog-stories" class="dialog-stories"></div><div class="dialog-actions"><button type="button" id="dialog-light" class="btn primary">Зажечь огонек ✧</button><span class="light-already-lit" id="dialog-light-status" role="status" hidden>✦ Свет уже горит</span><a id="dialog-story-link" class="btn outline" href="#stories">К историям ↓</a><button id="dialog-share" class="btn outline" type="button">Поделиться окном ↗</button></div><p id="share-notice" class="share-notice" aria-live="polite"></p></dialog>
 </body></html>
