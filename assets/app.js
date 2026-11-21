@@ -10,7 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
-const SITE_EDITION="0.4";
+const SITE_EDITION="0.4.1";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -20,6 +20,25 @@ function saveLights(){try{localStorage.setItem("ikf-window-lights-v1",JSON.strin
 function floorFor(number){return Math.floor((number-1)/11)+1;}
 function storiesAt(number){return stories.filter(s=>s.window===number);}
 function naturalLight(number){return (number*37+19)%13<5||number===70;}
+// A window is visually illuminated by its initial state, its resident story, or a visitor.
+function isWindowLit(number){return naturalLight(number)||storiesAt(number).length>0||lights.has(number);}
+function updateLightControl(number){
+  const button=byId("dialog-light"),notice=byId("dialog-light-status");
+  if(!Number.isInteger(number)){button.hidden=true;notice.hidden=true;return;}
+  const lit=isWindowLit(number);
+  button.hidden=lit;
+  button.disabled=lit;
+  notice.hidden=!lit;
+  notice.textContent=lit?"✦ Свет уже горит. Загляните в историю или выберите темное окно.":"";
+}
+function updateRandomControl(){
+  const dark=Array.from({length:99},(_,i)=>i+1).filter(n=>!isWindowLit(n));
+  const button=byId("light-random");
+  button.disabled=dark.length===0;
+  button.textContent=dark.length?"Зажечь случайное окно ✧":"Все окна уже светятся ✨";
+  if(!dark.length)byId("light-status").textContent="Все окна Люсхольма зажжены ✨";
+  return dark;
+}
 function drawHouse(){
  grid.replaceChildren();
  for(let floor=9;floor>=1;floor--){
@@ -30,7 +49,7 @@ function drawHouse(){
      const button=make("button","window");button.type="button";button.dataset.window=String(n);
      button.title="Квартира №"+n+", "+floor+"-й этаж"+(resident.length?" — "+resident.map(x=>x.name).join(", "):"");
      button.setAttribute("aria-label",button.title);
-     if(naturalLight(n)||lights.has(n))button.classList.add("lit");
+     if(isWindowLit(n))button.classList.add("lit");
      if(resident.length)button.classList.add("featured");
      if(n===70)button.classList.add("eira-home");
      if(lights.has(n))button.classList.add("user-lit");
@@ -79,9 +98,7 @@ function displayStory(s){
  const link=byId("dialog-story-link");
  if(validFicbook(s.ficbookUrl)){link.href=s.ficbookUrl;link.textContent="Читать на Фикбуке ↗";link.target="_blank";link.rel="noopener noreferrer";}
  else {link.href="#stories";link.textContent="Глава скоро появится";link.removeAttribute("target");link.removeAttribute("rel");}
- const light=byId("dialog-light");
- light.hidden=s.window===null;
- if(s.window!==null){light.disabled=lights.has(s.window);light.textContent=lights.has(s.window)?"Огонек зажжен ✓":"Зажечь огонек ✧";}
+ updateLightControl(s.window);
  const choices=byId("dialog-stories");choices.replaceChildren();
  if(s.window!==null)for(const other of storiesAt(s.window)){
    if(storiesAt(s.window).length<=1)break;
@@ -104,26 +121,27 @@ function openApartment(n){
  byId("dialog-title").textContent="Здесь еще будет история";
  byId("dialog-copy").textContent="Это окно ждет своего героя. Возможно, именно вы расскажете, что произошло здесь в новогоднюю ночь?";
  byId("dialog-meta").textContent="Девяносто девять квартир. Сколько угодно историй.";
- const light=byId("dialog-light");light.hidden=false;light.disabled=lights.has(n);light.textContent=lights.has(n)?"Огонек зажжен ✓":"Зажечь огонек ✧";
+ updateLightControl(n);
  const link=byId("dialog-story-link");link.href="https://t.me/chat_IKF";link.textContent="Стать автором ↗";link.target="_blank";link.rel="noopener noreferrer";
  byId("dialog-stories").replaceChildren();byId("share-notice").textContent="";
  if(!dialog.open)dialog.showModal();
 }
 function lightWindow(n){
- if(!Number.isInteger(n)||n<1||n>99)return;
+ if(!Number.isInteger(n)||n<1||n>99||isWindowLit(n))return;
  lights.add(n);saveLights();
  const button=grid.querySelector('[data-window="'+n+'"]');if(button)button.classList.add("lit","user-lit");
  byId("light-status").textContent=lights.size===1?"Вы зажгли первое окно ✦":"Ваших огоньков: "+lights.size+" ✦";
- if(dialog.open&&selectedWindow===n){byId("dialog-light").textContent="Огонек зажжен ✓";byId("dialog-light").disabled=true;}
+ if(dialog.open&&selectedWindow===n)updateLightControl(n);
+ updateRandomControl();
 }
 byId("dialog-close").addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
 dialog.addEventListener("close",()=>{if(lastFocus&&lastFocus.isConnected)lastFocus.focus()});
 byId("dialog-light").addEventListener("click",()=>lightWindow(selectedWindow));
 byId("light-random").addEventListener("click",()=>{
- const unused=Array.from({length:99},(_,i)=>i+1).filter(n=>!lights.has(n));
- const pool=unused.length?unused:Array.from({length:99},(_,i)=>i+1);
- lightWindow(pool[Math.floor(Math.random()*pool.length)]);
+ const dark=updateRandomControl();
+ if(!dark.length)return;
+ lightWindow(dark[Math.floor(Math.random()*dark.length)]);
  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
  byId("house").scrollIntoView({behavior:reduced?"instant":"smooth",block:"center"});
 });
@@ -170,9 +188,9 @@ async function fetchStories(){
    const valid=raw.filter(s=>s&&(s.window===null||(Number.isInteger(s.window)&&s.window>=1&&s.window<=99))&&["id","name","title","author","description"].every(k=>typeof s[k]==="string"));
    if(valid.length)stories=valid;
  }catch{/* Keep offline preview. */}
- drawHouse();drawStories();
+ drawHouse();drawStories();updateRandomControl();
  const match=window.location.hash.match(/^#window-(\d+)$/);
  if(match){const n=Number(match[1]);if(n>=1&&n<=99)openApartment(n);}
 }
 if(lights.size)byId("light-status").textContent="Ваших огоньков: "+lights.size+" ✦";
-drawHouse();drawStories();snow();fetchStories();
+drawHouse();drawStories();updateRandomControl();snow();fetchStories();

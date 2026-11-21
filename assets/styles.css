@@ -61,3 +61,7 @@
 @media(max-width:900px){.nav a:nth-child(2){display:none}.chapter-layout{grid-template-columns:100px 1fr;gap:32px}.chapter-index>span{font-size:105px}.chapter-index small{font-size:8px}.chapter-line{height:110px}}
 @media(max-width:800px){.chapter-layout{grid-template-columns:1fr;gap:16px}.chapter-index{flex-direction:row;gap:16px;align-items:center}.chapter-index>span{font-size:78px}.chapter-index small{margin:0}.chapter-line{display:none}}
 @media(max-width:530px){.edition-pill{display:table;margin:11px 0 0}.snow-toggle{padding:5px 9px;font-size:10px}.snow-toggle span{display:none}.header-link{font-size:10px}.hero-extras{margin:22px 0}.house-floor-guide{display:none}.chapter-main blockquote{font-size:28px;padding-left:17px}.chapter-excerpt-body{font-size:18px}}
+
+/* 0.4.1: do not offer to relight windows that are already illuminated. */
+.light-already-lit{display:inline-flex;align-items:center;color:#ffe0a9;background:rgba(244,186,101,.12);border:1px solid rgba(244,186,101,.35);padding:10px 13px;font-size:12px;border-radius:4px;line-height:1.5;max-width:100%}
+#light-random:disabled{opacity:.72;cursor:default;transform:none;box-shadow:none}
