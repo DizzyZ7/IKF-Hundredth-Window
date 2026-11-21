@@ -10,7 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
-const SITE_EDITION="0.7";
+const SITE_EDITION="0.8";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -62,8 +62,9 @@ function drawHouse(){
 function storyMatches(s,term,place){
  if(place==="house"&&s.window===null)return false;
  if(place==="city"&&s.window!==null)return false;
+ if(["mayachnaya","fridas-bakery","harbor"].includes(place)&&s.locationId!==place)return false;
  if(!term)return true;
- return [s.name,s.author,s.title,s.description,s.subtitle,s.location].filter(Boolean).join(" ").toLocaleLowerCase("ru").includes(term);
+ return [s.name,s.author,s.title,s.description,s.subtitle,s.location,getLocationTitle(s.locationId)].filter(Boolean).join(" ").toLocaleLowerCase("ru").includes(term);
 }
 function drawStories(){
  list.replaceChildren();
@@ -181,16 +182,100 @@ function snow(){
 }
 async function fetchStories(){
  try{
-   const response=await fetch("./data/stories.json?v=20261121-07",{cache:"no-store"});
+   const response=await fetch("./data/stories.json?v=20261121-08",{cache:"no-store"});
    if(!response.ok)throw Error("Unavailable");
    const raw=await response.json();
    if(!Array.isArray(raw))throw Error("Invalid JSON");
    const valid=raw.filter(s=>s&&(s.window===null||(Number.isInteger(s.window)&&s.window>=1&&s.window<=99))&&["id","name","title","author","description"].every(k=>typeof s[k]==="string"));
    if(valid.length)stories=valid;
  }catch{/* Keep offline preview. */}
- drawHouse();drawStories();updateRandomControl();
+ drawHouse();drawStories();updateRandomControl();renderPlaceIfOpen();
  const match=window.location.hash.match(/^#window-(\d+)$/);
  if(match){const n=Number(match[1]);if(n>=1&&n<=99)openApartment(n);}
 }
 if(lights.size)byId("light-status").textContent="Ваших огоньков: "+lights.size+" ✦";
 drawHouse();drawStories();updateRandomControl();snow();fetchStories();
+
+
+/* Discover the town and prepare a shareable, client-only author application. */
+let townLocations=[
+ {id:"mayachnaya",name:"Маячная улица",description:"Здесь стоит дом «Альбатрос» с 99 квартирами.",ideas:["Добрая встреча на темной лестнице."]},
+ {id:"fridas-bakery",name:"Пекарня Фриды",description:"Здесь пахнет кардамоном и свежей выпечкой.",ideas:["Незнакомцу достается лишний подарок."]},
+ {id:"harbor",name:"Северный порт",description:"Паром, рыбацкие лодки и заснеженная пристань.",ideas:["Кто-то успевает домой к полуночи."]}
+];
+let openPlaceId=null;
+function getLocationTitle(id){return townLocations.find(x=>x.id===id)?.name||"";}
+function renderPlaceIfOpen(){if(openPlaceId)renderPlace(openPlaceId);}
+function renderPlace(id){
+ const p=townLocations.find(x=>x.id===id);if(!p)return;
+ const root=byId("place-detail");root.replaceChildren();
+ const main=make("div","place-description");
+ main.append(make("span","place-kicker","Путеводитель по Люсхольму"),make("h3","",p.name),make("p","",p.description));
+ const side=make("div","place-suggestions");
+ side.append(make("span","place-kicker","Сюжетные зацепки"));
+ const ul=make("ul","place-ideas");
+ (p.ideas||[]).slice(0,5).forEach(x=>ul.append(make("li","",x)));side.append(ul);
+ const total=stories.filter(s=>s.locationId===id).length;
+ side.append(make("p","place-count",total?"Историй этой локации: "+total:"Здесь еще ждут своих героев."));
+ const actions=make("div","place-actions");
+ const show=make("button","btn outline","Истории этого места ↗");show.type="button";
+ show.addEventListener("click",()=>{
+   storySearch.value="";storyFilter.value=id;drawStories();
+   byId("stories").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+ });
+ const create=make("button","btn primary","Придумать героя");create.type="button";
+ create.addEventListener("click",()=>openCharacter(id));
+ actions.append(show,create);side.append(actions);
+ root.append(main,side);root.hidden=false;openPlaceId=id;
+ document.querySelectorAll(".place-open").forEach(b=>{
+   const current=b.dataset.place===id;b.setAttribute("aria-expanded",String(current));
+   b.closest(".place-card")?.classList.toggle("is-selected",current);
+ });
+}
+document.querySelectorAll(".place-open").forEach(button=>button.addEventListener("click",()=>{
+ const id=button.dataset.place;
+ if(openPlaceId===id){
+   openPlaceId=null;byId("place-detail").hidden=true;
+   document.querySelectorAll(".place-open").forEach(b=>{b.setAttribute("aria-expanded","false");b.closest(".place-card")?.classList.remove("is-selected");});
+ } else renderPlace(id);
+}));
+async function loadLocations(){
+ try{
+   const r=await fetch("./data/locations.json?v=20261121-08",{cache:"no-store"});
+   if(!r.ok)throw Error("not found");
+   const a=await r.json();
+   if(Array.isArray(a)&&a.length>=3){
+     const valid=a.filter(p=>p&&typeof p.id==="string"&&typeof p.name==="string"&&typeof p.description==="string"&&Array.isArray(p.ideas));
+     if(valid.length>=3)townLocations=valid;
+   }
+ }catch{/* Built-in minimal lore remains readable offline. */}
+ renderPlaceIfOpen();drawStories();
+}
+const characterDialog=byId("character-dialog"),characterForm=byId("character-form");
+function openCharacter(placeId){
+ if(placeId&&townLocations.some(x=>x.id===placeId))byId("character-place").value=placeId;
+ characterDialog.showModal();byId("character-name").focus();
+}
+byId("make-character").addEventListener("click",()=>openCharacter());
+byId("character-close").addEventListener("click",()=>characterDialog.close());
+characterDialog.addEventListener("click",e=>{if(e.target===characterDialog)characterDialog.close();});
+characterForm.addEventListener("input",()=>{byId("character-result").hidden=true;byId("character-feedback").textContent="";});
+characterForm.addEventListener("submit",e=>{
+ e.preventDefault();if(!characterForm.reportValidity())return;
+ const name=byId("character-name").value.trim(),place=byId("character-place").value;
+ const author=byId("character-author").value.trim(),idea=byId("character-idea").value.trim(),good=byId("character-warmth").value.trim();
+ if(name.length<2||idea.length<10){byId("character-feedback").textContent="Добавь имя и описание истории.";return;}
+ const location=place==="other"?"Другой уголок Люсхольма":getLocationTitle(place);
+ byId("character-output").value=[
+  "🕯 Зажгу свое окно!","Персонаж: "+name,"Место: "+location,
+  author?"Ник на Фикбуке: "+author:"","Замысел главы: "+idea,good?"Добрый поступок: "+good:""
+ ].filter(Boolean).join("\n");
+ byId("character-result").hidden=false;
+ byId("character-feedback").textContent="Готово! Скопируй заявку и отправь в чат ИКФ.";
+ byId("character-result").scrollIntoView({block:"nearest",behavior:"smooth"});
+});
+byId("character-copy").addEventListener("click",async()=>{
+ try{await navigator.clipboard.writeText(byId("character-output").value);byId("character-feedback").textContent="Скопировано. Отправь текст в чат ИКФ.";}
+ catch{byId("character-output").focus();byId("character-output").select();byId("character-feedback").textContent="Скопируй выделенный текст вручную.";}
+});
+loadLocations();
