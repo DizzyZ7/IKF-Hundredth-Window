@@ -76,3 +76,10 @@ blockquote{font:italic 22px/1.46 Georgia,serif;color:#66524a;border-left:2px sol
  h2{font-size:37px}
  .facts,.locations{grid-template-columns:1fr}
 }
+
+/* Long author roster: subsequent A4 pages should flow naturally instead of clipping. */
+@media print{
+ .paper.authors{height:auto;min-height:297mm;overflow:visible;break-inside:auto;break-after:auto}
+ .paper.authors .paper-footer{position:static;margin-top:12mm}
+ .story-list article{break-inside:avoid-page;page-break-inside:avoid}
+}
