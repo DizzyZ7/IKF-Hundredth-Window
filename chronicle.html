@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142639">
+<meta name="description" content="Хроника новогодней ночи, сюжетные события и согласованные связи героев коллективной истории ИКФ.">
+<meta property="og:title" content="Хроника Люсхольма · Свет в сотом окне">
+<meta property="og:description" content="Много историй. Одна новогодняя ночь.">
+<title>Хроника Люсхольма · Свет в сотом окне</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chronicle.css?v=20261121-10"><script src="assets/chronicle.js?v=20261121-10" defer></script>
+</head>
+<body>
+<a href="#content" class="skip-link">Перейти к содержимому</a>
+<div class="snow" id="snow" aria-hidden="true"></div>
+<header class="header">
+<a class="identity" href="./"><img src="assets/ikf-mark.svg" width="44" height="44" alt=""><span><strong>ИКФ</strong><small>Свет в сотом окне</small></span></a>
+<nav aria-label="Навигация"><a href="./#house">Дом</a><a href="characters.html">Герои</a><a href="chronicle.html" aria-current="page">Хроника</a></nav>
+<a class="header-join" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Стать автором ↗</a>
+</header>
+<main id="content">
+<section class="mast">
+<div class="container mast-grid">
+ <div><p class="eyebrow">Люсхольм · 31 декабря 2026 года</p><h1>Много историй.<br><em>Одна ночь.</em></h1><p class="mast-lead">В этой хронике мы бережно собираем общую канву коллективной новогодней истории. То, что уже определено, отделено от будущих глав. Каждому автору найдется место.</p><div class="hero-actions"><a class="button gold" href="#timeline">Прочесть хронику ↓</a><a class="button transparent" href="#editorial">Согласовать главу ↗</a></div></div>
+ <div class="mast-visual" aria-hidden="true"><div class="paper"><div class="paper-top">ЛЮСХОЛЬМ &nbsp; · &nbsp; ЗИМА 2026</div><div class="paper-track"><i></i><i></i><i></i></div><div class="paper-caption">31 декабря<br>Истории встречаются</div><div class="paper-sign">ИКФ</div></div></div>
+</div></section>
+<section class="legend-section" aria-label="Как устроена хроника">
+ <div class="container legend"><div><span class="legend-dot solid"></span><strong>Основа мира</strong><small>Из общих вводных проекта</small></div><div><span class="legend-dot draft"></span><strong>Готовится</strong><small>Глава без опубликованного текста</small></div><div><span class="legend-dot live"></span><strong>Опубликовано</strong><small>Есть подтвержденная ссылка на главу</small></div></div>
+</section>
+<section class="section timeline-section" id="timeline">
+ <div class="container">
+  <div class="section-intro"><div><p class="eyebrow">Общая канва</p><h2>Опорные <em>события</em></h2></div><p>Это только известные вводные. Часы, последствия и встречи между героями пока не закреплены и могут быть согласованы с авторами.</p></div>
+  <div class="timeline" id="anchors" aria-live="polite"><p class="loading">Открываем летопись…</p></div>
+ </div>
+</section>
+<section class="section episode-section" id="episodes">
+ <div class="container">
+  <div class="section-intro"><div><p class="eyebrow">Главы и события</p><h2>Что уже <em>рассказано</em></h2></div><p>Здесь появляются только согласованные и опубликованные эпизоды. Подготовленные главы остаются отдельным списком — без притворных дат и событий.</p></div>
+  <div class="episode-filters"><label for="event-filter">Период</label><select id="event-filter"><option value="all">Все опубликованные эпизоды</option><option value="before">До отключения</option><option value="during">Во время отключения</option><option value="after">После отключения</option><option value="independent">В другое время / вне дома</option></select><span id="event-count" aria-live="polite"></span></div>
+  <div class="episode-list" id="episode-list" aria-live="polite"><p class="empty">Опубликованных эпизодов пока нет.</p></div>
+  <div class="coming-soon"><div><p class="eyebrow">На подходе</p><h3>Истории в подготовке</h3><p>Они не считаются опубликованными событиями и не закрепляют последовательность сюжета.</p></div><div class="draft-list" id="draft-list"></div></div>
+ </div>
+</section>
+<section class="section ties-section" id="ties">
+ <div class="container">
+  <div class="section-intro"><div><p class="eyebrow">Переплетение судеб</p><h2>Нити между <em>героями</em></h2></div><p>Связь появляется только после согласия обоих авторов и проверки редакцией. Мы не придумываем чужим героям знакомства без разрешения.</p></div>
+  <div class="ties-layout"><div class="characters-list" id="tie-characters"><p class="loading">Знакомимся с жителями…</p></div><div class="ties-panel"><p class="eyebrow">Согласованные связи</p><div id="tie-list" class="tie-list" aria-live="polite"><p class="empty">Еще не добавлено ни одной подтвержденной связи.</p></div><a href="characters.html" class="subtle-link">Открыть архив персонажей ↗</a></div></div>
+ </div>
+</section>
+<section class="section editorial-section" id="editorial">
+ <div class="container editorial-layout">
+  <div class="editorial-info"><p class="eyebrow">Для авторов и редакторов</p><h2>Лист <em>согласования</em></h2><p>Прежде чем пересечься с чужим сюжетом, укажи место, положение относительно отключения света и других участников сцены. Эта форма поможет собрать информацию для редактора.</p>
+   <div class="editorial-notes"><p><strong>Не автоматическая проверка.</strong> Сайт не знает всех черновиков и не может подтвердить совместимость глав.</p><p>Заявка останется только в твоем браузере до копирования. Ничего автоматически в чат не отправляется.</p></div>
+  </div>
+  <div class="editorial-form-card">
+   <form id="continuity-form">
+    <label>Твоя глава / персонаж <span>обязательно</span><input id="chapter-name" name="chapter" required minlength="2" maxlength="100" placeholder="Имя героя или название главы"></label>
+    <div class="field-pair"><label>Когда происходит сцена? <select id="chapter-period"><option value="before">До отключения света</option><option value="during">Во время отключения</option><option value="after">После отключения</option><option value="independent">Не связано с отключением / другой момент</option></select></label><label>Место <select id="chapter-location"><option value="mayachnaya">Маячная улица / «Альбатрос»</option><option value="fridas-bakery">Пекарня Фриды</option><option value="harbor">Северный порт</option><option value="other">Другое место Люсхольма</option></select></label></div>
+    <label>Суть эпизода <span>обязательно</span><textarea id="chapter-summary" required minlength="12" maxlength="900" rows="3" placeholder="Что происходит? Кого затрагивает событие?"></textarea></label>
+    <label>Персонажи других авторов <span>необязательно</span><input id="chapter-others" maxlength="180" placeholder="Имена, если есть"></label>
+    <div class="checks"><label><input type="checkbox" id="uses-others"> В сцене участвуют персонажи других авторов</label><label><input type="checkbox" id="spoiler-risk"> Есть риск раскрыть тайну квартиры №100</label><label><input type="checkbox" id="has-consequences"> Событие влияет на другие главы</label></div>
+    <button type="submit" class="button gold">Подготовить редакторскую заметку ↗</button>
+   </form>
+   <div id="continuity-result" class="continuity-result" hidden><label for="continuity-output">Готово для согласования</label><textarea id="continuity-output" rows="10" readonly></textarea><div class="result-actions"><button type="button" id="copy-note" class="button gold">Скопировать</button><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer" class="button transparent">Перейти в чат ИКФ ↗</a></div><p id="note-feedback" role="status" aria-live="polite"></p></div>
+  </div>
+ </div>
+</section>
+<section class="closing"><div class="container"><h2>Каждый свет<br>оставляет <em>след.</em></h2><p>История Люсхольма пишется вместе, а разгадку сотого окна мы бережем до 31 декабря.</p><a href="./#join" class="button gold">Присоединиться к ИКФ ↗</a></div></section>
+</main>
+<footer><div class="container footer"><a class="footer-brand" href="./"><img width="36" height="36" src="assets/ikf-mark.svg" alt="">СВЕТ В СОТОМ ОКНЕ</a><span>ИКФ · Новогодняя история 2026</span><div><a href="characters.html">Герои ↗</a><a href="./#mystery">Сотое окно ↗</a></div></div></footer>
+</body>
+</html>
