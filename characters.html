@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111f30">
+<meta name="description" content="Литературный архив героев Люсхольма — коллективный новогодний ориджинал ИКФ.">
+<meta property="og:title" content="Герои Люсхольма · Свет в сотом окне">
+<meta property="og:description" content="За каждым окном — история, за каждой историей — человек.">
+<title>Герои Люсхольма · Свет в сотом окне · ИКФ</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/characters.css?v=20261121-09">
+<script src="assets/characters.js?v=20261121-09" defer></script>
+</head>
+<body>
+<a href="#content" class="skip-link">Перейти к содержимому</a>
+<div class="atmosphere" id="atmosphere" aria-hidden="true"></div>
+<header class="masthead">
+ <a class="mast-brand" href="./" aria-label="На главную «Света в сотом окне»"><img src="assets/ikf-mark.svg" alt="" width="42" height="42"><span><strong>ИКФ</strong><small>Свет в сотом окне</small></span></a>
+ <nav aria-label="Разделы сайта"><a href="./#house">Дом «Альбатрос»</a><a href="characters.html" aria-current="page">Герои</a><a href="./#places">Люсхольм</a></nav>
+ <a class="mast-join" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Стать автором ↗</a>
+</header>
+<main id="content">
+<section class="hero-intro">
+ <div class="wrap intro-grid">
+  <div>
+   <p class="eyebrow">Литературный архив · ИКФ</p>
+   <h1>Люди, которые<br><em>оставляют свет</em></h1>
+   <p class="intro-lead">За каждым окном — жизнь. Здесь мы собираем истории, характеры и маленькие чудеса героев Люсхольма. Каждому автору найдется место.</p>
+   <div class="intro-cta"><a href="#directory" class="cta cta-gold">Познакомиться с героями ↓</a><a href="./#stories" class="cta cta-quiet">К историям ↗</a></div>
+  </div>
+  <div class="intro-art" aria-hidden="true">
+    <div class="roofline"></div><div class="art-window"><i class="glass-glow"></i><i class="frame-vertical"></i><i class="frame-horizontal"></i><i class="art-candle"></i></div>
+    <div class="art-caption">Здесь тебя ждут</div>
+  </div>
+ </div>
+</section>
+<section class="directory-section" id="directory">
+ <div class="wrap">
+  <div class="section-head"><div><p class="eyebrow">Голоса города</p><h2>Наши <em>герои</em></h2></div><p>Сначала знакомимся с Эйрой Линдт. Новые участники будут появляться по мере согласования и публикации глав.</p></div>
+  <div class="finder"><label for="character-search">Найти героя или автора</label><input id="character-search" type="search" placeholder="Имя, глава, автор…" autocomplete="off"><span id="character-count" aria-live="polite"></span></div>
+  <div class="directory-grid" id="character-grid" aria-live="polite"><p class="loading">Открываем архив Люсхольма…</p></div>
+ </div>
+</section>
+<section id="profile-view" class="profile-section" hidden aria-labelledby="profile-name">
+ <div class="wrap">
+  <div class="profile-nav"><a href="characters.html" id="profile-back">← Все герои</a><span>Личное дело · Люсхольм</span></div>
+  <div class="profile-layout">
+   <div class="profile-poster">
+    <div class="poster-topline">ЛЮСХОЛЬМ · 31.12.2026</div>
+    <div class="portrait-window" id="portrait-window"><span id="portrait-letter" aria-hidden="true">Э</span></div>
+    <p id="portrait-caption" class="portrait-caption">Портрет персонажа</p>
+    <div class="poster-bottom"><span id="poster-location">АЛЬБАТРОС</span><span id="poster-number">№70</span></div>
+   </div>
+   <div class="profile-content">
+    <p class="eyebrow">Знакомство с персонажем</p>
+    <h2 id="profile-name">Эйра Линдт</h2>
+    <p id="profile-tagline" class="profile-tagline"></p>
+    <div class="profile-meta" id="profile-meta"></div>
+    <div id="profile-traits" class="profile-traits"></div>
+    <div id="profile-bio" class="profile-bio"></div>
+    <blockquote id="profile-quote" class="profile-quote" hidden></blockquote>
+    <div class="profile-actions"><a id="profile-apartment" class="cta cta-gold" href="./#house">Найти окно ↗</a><button type="button" class="cta cta-quiet" id="profile-share">Поделиться историей</button></div>
+    <p class="share-feedback" id="share-feedback" role="status" aria-live="polite"></p>
+   </div>
+  </div>
+  <div class="profile-lower">
+   <section class="journey" id="journey" hidden><p class="eyebrow">Страницы одной ночи</p><h3>История героя</h3><div id="profile-moments" class="moments"></div></section>
+   <section class="chapters"><p class="eyebrow">Авторские главы</p><h3>Где прочитать</h3><div id="profile-chapters" class="chapter-list"></div></section>
+  </div>
+ </div>
+</section>
+<section class="archive-invitation">
+ <div class="wrap invitation-layout"><div><p class="eyebrow">И для тебя найдется место</p><h2>Следующее имя<br>может быть <em>твоим</em></h2><p>Неважно, сколько у тебя опыта. Придумай героя, расскажи одну добрую историю и стань частью общей новогодней книги ИКФ.</p></div><a href="./#join" class="cta cta-gold">Присоединиться к истории ↗</a></div>
+</section>
+</main>
+<footer><div class="wrap foot-inner"><a href="./" class="foot-brand"><img src="assets/ikf-mark.svg" alt="" width="34" height="34"><span>СВЕТ В СОТОМ ОКНЕ</span></a><span>ИКФ · зима 2026 · Архив героев</span><a href="./#mystery">Тайна сотого окна ↗</a></div></footer>
+</body>
+</html>

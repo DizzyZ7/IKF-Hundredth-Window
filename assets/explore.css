@@ -33,3 +33,21 @@
 .character-feedback{color:#eacb9f;font-size:11px;min-height:1em}
 @media(max-width:770px){.place-detail{grid-template-columns:1fr;gap:26px}}
 @media(max-width:530px){.place-detail{padding:23px 20px}.place-actions,.join-actions,.character-actions{flex-direction:column}.place-actions .btn,.join-actions .btn,.character-actions .btn{width:100%}.character-dialog{padding:27px 20px}.character-fields{grid-template-columns:1fr}.character-fields .wide{grid-column:auto}.character-dialog h2{font-size:43px}}
+
+/* v0.9: explicit, finger-friendly story actions instead of nested interactive cards */
+.story-index-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 19px}
+.story-index-head .story-count{margin:0}
+.character-directory-link{display:inline-flex;align-items:center;gap:8px;color:#855c4c;border-bottom:1px solid #ae8f79;padding:5px 0;font:800 11px/1.5 Manrope,system-ui,sans-serif}
+.character-directory-link:hover{color:#5c3e34}
+.story-card:not(.empty){cursor:default}
+.story-card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:15px;border-top:1px solid #d8e0dc;position:relative;z-index:2}
+.story-card-actions :is(a,button){appearance:none;border:1px solid #c7d4d0;border-radius:5px;padding:9px 12px;min-height:40px;background:#f6f5ef;color:#3c5660;font:800 11px/1.3 Manrope,system-ui,sans-serif;text-align:center;cursor:pointer}
+.story-card-actions .story-action-profile{border-color:#b68a68;background:#e9d8bd;color:#594439}
+.story-card-actions :is(a,button):hover{border-color:#9f765a;filter:brightness(.98)}
+.story-card-actions a{flex:1}
+#dialog-profile-link[hidden]{display:none!important}
+@media(max-width:530px){
+ .story-index-head{align-items:flex-start;flex-direction:column}
+ .story-card-actions{gap:11px}
+ .story-card-actions :is(a,button){padding:11px 15px}
+}

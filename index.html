@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101c2c"><meta name="application-version" content="0.8.0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101c2c"><meta name="application-version" content="0.9.0">
 <meta name="description" content="Свет в сотом окне — коллективный новогодний ориджинал ИКФ. Добро пожаловать в Люсхольм.">
 <meta property="og:title" content="Свет в сотом окне · ИКФ"><meta property="og:description" content="У каждого своя история. Но свет один на всех.">
 <title>Свет в сотом окне · ИКФ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css?v=20261121-05"><link rel="stylesheet" href="assets/winter.css?v=20261121-07"><link rel="stylesheet" href="assets/explore.css?v=20261121-08"><script src="assets/app.js?v=20261121-08" defer></script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css?v=20261121-05"><link rel="stylesheet" href="assets/winter.css?v=20261121-07"><link rel="stylesheet" href="assets/explore.css?v=20261121-09"><script src="assets/app.js?v=20261121-09" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 <div class="snowfall" id="snowfall" aria-hidden="true"></div>
 <header class="site-header">
 <a class="brand" href="#top"><img class="brand-emblem" src="assets/ikf-mark.svg" alt="" width="45" height="45"><span><strong>ИКФ</strong><small>новогодняя история</small></span></a>
-<nav class="nav" aria-label="Навигация"><a href="#world">О Люсхольме</a><a href="#chapter">Первая глава</a><a href="#places">Город</a><a href="#stories">Истории</a><a href="#mystery">Тайна</a></nav>
+<nav class="nav" aria-label="Навигация"><a href="#world">О Люсхольме</a><a href="#chapter">Первая глава</a><a href="#places">Город</a><a href="#stories">Истории</a><a href="characters.html">Герои</a><a href="#mystery">Тайна</a></nav>
 <a class="header-link" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Стать автором ↗</a><button class="snow-toggle" id="snow-toggle" type="button" aria-pressed="true" title="Включить или выключить снег">❄ <span>Снег</span></button>
 </header>
 <main id="main">
 <section class="hero" id="top">
 <div class="container hero-layout">
 <div class="hero-copy">
-<div class="eyebrow">Люсхольм · 31 декабря 2026</div><div class="edition-pill" aria-label="Новая версия сайта">ЗИМНЯЯ РЕДАКЦИЯ · 0.8</div>
+<div class="eyebrow">Люсхольм · 31 декабря 2026</div><div class="edition-pill" aria-label="Новая версия сайта">ЗИМНЯЯ РЕДАКЦИЯ · 0.9</div>
 <p class="kicker">Коллективный новогодний ориджинал ИКФ</p>
 <h1>Свет<br>в <em>сотом</em> окне</h1>
 <p class="lead">В одном северном городке есть дом с девяноста девятью квартирами. Но перед Новым годом жильцы получают приглашения из сотой.</p>
@@ -71,7 +71,7 @@
 </div><div class="place-detail" id="place-detail" aria-live="polite" hidden></div><p class="places-note">Это только первые места. Авторы могут открывать новые уголки города.</p></div></section>
 <section class="section stories-section" id="stories"><div class="container">
 <div class="section-head"><div><p class="kicker">Голоса Люсхольма</p><h2>За каждым окном — <em>жизнь</em></h2></div><p>Авторы ИКФ создают героев, которые встречаются, ошибаются, помогают друг другу и становятся частью одной новогодней ночи.</p></div>
-<div class="story-controls"><label class="sr-only" for="story-search">Поиск по герою, главе или автору</label><input id="story-search" type="search" placeholder="Поиск героя, главы или автора..." autocomplete="off"><label class="sr-only" for="story-filter">Местоположение</label><select id="story-filter"><option value="all">Все истории</option><option value="house">Дом «Альбатрос»</option><option value="city">Другие места города</option><option value="mayachnaya">Маячная улица</option><option value="fridas-bakery">Пекарня Фриды</option><option value="harbor">Северный порт</option></select></div><p class="story-count" id="story-count" aria-live="polite"></p><div class="story-grid" id="story-grid"></div>
+<div class="story-controls"><label class="sr-only" for="story-search">Поиск по герою, главе или автору</label><input id="story-search" type="search" placeholder="Поиск героя, главы или автора..." autocomplete="off"><label class="sr-only" for="story-filter">Местоположение</label><select id="story-filter"><option value="all">Все истории</option><option value="house">Дом «Альбатрос»</option><option value="city">Другие места города</option><option value="mayachnaya">Маячная улица</option><option value="fridas-bakery">Пекарня Фриды</option><option value="harbor">Северный порт</option></select></div><div class="story-index-head"><p class="story-count" id="story-count" aria-live="polite"></p><a href="characters.html" class="character-directory-link">Знакомство с героями <span aria-hidden="true">↗</span></a></div><div class="story-grid" id="story-grid"></div>
 <p class="story-note">Здесь не бывает «слишком поздно» для новой истории. Число участников не ограничено.</p>
 </div></section>
 <section class="section light-section"><div class="container light-layout"><div class="kindness-illustration" aria-hidden="true">
@@ -93,8 +93,8 @@
 <div class="join-actions"><a class="btn primary" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Присоединиться к авторам ↗</a><button class="btn outline" type="button" id="make-character">Придумать героя</button></div>
 <small>Без ограничения числа авторов · Без конкурса · С указанием авторства</small></div></section>
 </main>
-<footer><div class="container footer"><a href="#top" class="footer-brand"><img class="footer-mark" src="assets/ikf-mark.svg" alt="" width="34" height="34">СВЕТ В СОТОМ ОКНЕ</a><p>Истории ИКФ · 2026<br>Создано с теплом для тех, кто рядом.<br><span class="build-stamp">Редакция 0.8 · 21.11.2026</span></p><div><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Чат ИКФ ↗</a><a href="print.html">Путеводитель PDF ↗</a><a href="https://github.com/DizzyZ7/IKF-Hundredth-Window" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
-<dialog id="window-dialog" class="window-dialog" aria-labelledby="dialog-title"><button type="button" id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div class="dialog-number" id="dialog-number"></div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><p class="dialog-meta" id="dialog-meta"></p><div id="dialog-stories" class="dialog-stories"></div><div class="dialog-actions"><button type="button" id="dialog-light" class="btn primary">Зажечь огонек ✧</button><span class="light-already-lit" id="dialog-light-status" role="status" hidden>✦ Свет уже горит</span><a id="dialog-story-link" class="btn outline" href="#stories">К историям ↓</a><button id="dialog-share" class="btn outline" type="button">Поделиться окном ↗</button></div><p id="share-notice" class="share-notice" aria-live="polite"></p></dialog>
+<footer><div class="container footer"><a href="#top" class="footer-brand"><img class="footer-mark" src="assets/ikf-mark.svg" alt="" width="34" height="34">СВЕТ В СОТОМ ОКНЕ</a><p>Истории ИКФ · 2026<br>Создано с теплом для тех, кто рядом.<br><span class="build-stamp">Редакция 0.9 · 21.11.2026</span></p><div><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Чат ИКФ ↗</a><a href="print.html">Путеводитель PDF ↗</a><a href="https://github.com/DizzyZ7/IKF-Hundredth-Window" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+<dialog id="window-dialog" class="window-dialog" aria-labelledby="dialog-title"><button type="button" id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div class="dialog-number" id="dialog-number"></div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><p class="dialog-meta" id="dialog-meta"></p><div id="dialog-stories" class="dialog-stories"></div><div class="dialog-actions"><button type="button" id="dialog-light" class="btn primary">Зажечь огонек ✧</button><span class="light-already-lit" id="dialog-light-status" role="status" hidden>✦ Свет уже горит</span><a id="dialog-story-link" class="btn outline" href="#stories">К историям ↓</a><a id="dialog-profile-link" class="btn outline" href="characters.html" hidden>Досье героя ↗</a><button id="dialog-share" class="btn outline" type="button">Поделиться окном ↗</button></div><p id="share-notice" class="share-notice" aria-live="polite"></p></dialog>
 
 <dialog class="character-dialog" id="character-dialog" aria-labelledby="character-title">
 <button type="button" class="dialog-close" id="character-close" aria-label="Закрыть">×</button>

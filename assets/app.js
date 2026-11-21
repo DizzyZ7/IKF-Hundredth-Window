@@ -10,7 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
-const SITE_EDITION="0.8";
+const SITE_EDITION="0.9";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -76,8 +76,15 @@ function drawStories(){
    const placeText=s.window===null?"Люсхольм":"Квартира "+s.window+" · "+floorFor(s.window)+"-й этаж";
    top.append(make("span","story-number",s.window===null?"✧":String(s.window).padStart(2,"0")),make("span","story-type",placeText));
    card.append(top,make("h3","",s.name),make("p","",s.description),make("span","story-author","Автор: "+s.author));
-   card.tabIndex=0;card.setAttribute("role","button");card.setAttribute("aria-label","Подробнее: "+s.name);
-   card.addEventListener("click",()=>openStory(s));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openStory(s)}});
+   const actions=make("div","story-card-actions");
+   const peek=make("button","story-action-brief","Кратко");peek.type="button";
+   peek.setAttribute("aria-label","Кратко о персонаже "+s.name);
+   peek.addEventListener("click",()=>openStory(s));
+   const profile=make("a","story-action-profile","Профиль ↗");
+   const heroId=typeof s.characterId==="string"&&s.characterId?s.characterId:s.id;
+   profile.href="characters.html?id="+encodeURIComponent(heroId);
+   profile.setAttribute("aria-label","Открыть профиль "+s.name);
+   actions.append(peek,profile);card.append(actions);
    list.append(card);
  }
  if(!matching.length)list.append(make("p","no-results","Пока таких историй нет. Попробуйте другой поиск."));
@@ -96,6 +103,9 @@ function displayStory(s){
  byId("dialog-title").textContent=s.name;
  byId("dialog-copy").textContent=s.description+(s.excerpt?" "+s.excerpt:"");
  byId("dialog-meta").textContent="«"+s.title+"» · "+s.author;
+ const profileLink=byId("dialog-profile-link");
+ profileLink.hidden=false;
+ profileLink.href="characters.html?id="+encodeURIComponent(s.characterId||s.id);
  const link=byId("dialog-story-link");
  if(validFicbook(s.ficbookUrl)){link.href=s.ficbookUrl;link.textContent="Читать на Фикбуке ↗";link.target="_blank";link.rel="noopener noreferrer";}
  else {link.href="#stories";link.textContent="Глава скоро появится";link.removeAttribute("target");link.removeAttribute("rel");}
@@ -115,6 +125,7 @@ function openStory(s){
 }
 function openApartment(n){
  selectedWindow=n;
+ byId("dialog-profile-link").hidden=true;
  const group=storiesAt(n);
  if(group.length){openStory(group[0]);return;}
  lastFocus=document.activeElement;selectedStory=null;
@@ -182,7 +193,7 @@ function snow(){
 }
 async function fetchStories(){
  try{
-   const response=await fetch("./data/stories.json?v=20261121-08",{cache:"no-store"});
+   const response=await fetch("./data/stories.json?v=20261121-09",{cache:"no-store"});
    if(!response.ok)throw Error("Unavailable");
    const raw=await response.json();
    if(!Array.isArray(raw))throw Error("Invalid JSON");
