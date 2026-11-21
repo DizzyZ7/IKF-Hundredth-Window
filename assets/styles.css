@@ -23,3 +23,41 @@
 
 /* Ensure native hidden state overrides display utilities. */
 [hidden]{display:none!important}
+
+/* v0.4: visually distinct edition, reliable navigation, reading excerpt, lightweight snow controls */
+.edition-pill{display:inline-flex;align-items:center;padding:6px 11px;border:1px solid #d6b28a66;border-radius:50px;margin-left:10px;color:#f4d5a9;letter-spacing:.11em;font-size:9px;background:#a87e4a22;vertical-align:middle}
+.snow-toggle{border:1px solid #bda47d80;background:#ffffff0d;color:#efcf9e;border-radius:30px;padding:7px 13px;font-size:12px;min-height:36px;transition:background .2s}
+.snow-toggle:hover{background:#ffffff20}
+.snow-toggle[aria-pressed=false]{opacity:.58}
+.snowfall.snow-off{display:none}
+.hero-extras{margin-top:25px;display:flex;flex-direction:column;gap:12px;max-width:440px}
+.eira-quick{border:1px solid #cf7e7d88;border-left:3px solid #ec9d93;border-radius:3px;color:#f6dfd9;background:linear-gradient(100deg,#7b445244,transparent);padding:12px 16px;text-align:left;font-size:11px;transition:background .2s,transform .2s;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.eira-quick strong{color:#ffc3b4;letter-spacing:.04em}
+.eira-quick:hover{background:#85495a88;transform:translateX(3px)}
+.window-finder{display:flex;align-items:center;gap:8px;padding:8px 10px 8px 15px;border:1px solid #cad0c036;background:#101f2b77;border-radius:3px}
+.window-finder label{font-size:11px;color:#d8e1da;margin-right:auto;white-space:nowrap}
+.window-finder input{background:#f2e9d7;color:#1e3442;border:0;padding:8px 9px;font-size:13px;border-radius:2px;width:77px;min-width:0}
+.window-finder button{color:#182f3c;background:#e7c392;border:0;border-radius:2px;height:37px;width:40px;font-size:22px;line-height:1}
+.house-floor-guide{position:absolute;z-index:7;left:8px;bottom:40px;color:#cedadd;font-weight:700;font-size:10px;display:flex;flex-direction:column;align-items:center;background:#1a3247aa;border-radius:3px;padding:7px 8px}
+.house-floor-guide span{color:#eac899}
+.chapter-preview{background:radial-gradient(ellipse at 20% 50%,#66534730,transparent 46%),linear-gradient(120deg,#20394a,#142838)}
+.chapter-layout{display:grid;grid-template-columns:190px 1fr;gap:75px;max-width:960px}
+.chapter-index{color:#d8be91;display:flex;flex-direction:column;align-items:center;align-self:start}
+.chapter-index>span{font:160px/.82 "Cormorant Garamond",Georgia,serif;letter-spacing:-.07em}
+.chapter-index small{font-size:10px;letter-spacing:.14em;margin-top:19px}
+.chapter-line{width:1px;height:155px;background:linear-gradient(#dfbd87,transparent);margin-top:30px}
+.chapter-attribution{color:#e0b28a;font-size:12px;letter-spacing:.04em}
+.chapter-main blockquote{font:italic clamp(24px,2.8vw,35px)/1.35 "Cormorant Garamond",Georgia,serif;color:#f7e7cf;margin:32px 0;border-left:2px solid #dfb17a;padding-left:27px;max-width:670px}
+.chapter-excerpt{border-top:1px solid #b6beb12a;border-bottom:1px solid #b6beb12a;margin-top:30px;max-width:680px}
+.chapter-excerpt summary{cursor:pointer;list-style:none;color:#efc593;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center;padding:17px 4px}
+.chapter-excerpt summary::-webkit-details-marker{display:none}
+.chapter-excerpt[open] summary span{transform:rotate(45deg)}
+.chapter-excerpt summary span{font-size:21px;transition:transform .2s}
+.chapter-excerpt-body{padding:8px 7px 21px;color:#d3dbd9;font:18px/1.75 "Cormorant Garamond",Georgia,serif;max-width:630px}
+.chapter-excerpt-body p{margin-bottom:15px}
+.chapter-excerpt-body .chapter-finish{color:#e3b580;font:11px Manrope,system-ui,sans-serif;margin-top:28px}
+.build-stamp{color:#e9c08b;font-size:10px;white-space:nowrap}
+@media(max-width:1130px){.site-header{gap:12px}.nav{gap:16px}}
+@media(max-width:900px){.nav a:nth-child(2){display:none}.chapter-layout{grid-template-columns:100px 1fr;gap:32px}.chapter-index>span{font-size:105px}.chapter-index small{font-size:8px}.chapter-line{height:110px}}
+@media(max-width:800px){.chapter-layout{grid-template-columns:1fr;gap:16px}.chapter-index{flex-direction:row;gap:16px;align-items:center}.chapter-index>span{font-size:78px}.chapter-index small{margin:0}.chapter-line{display:none}}
+@media(max-width:530px){.edition-pill{display:table;margin:11px 0 0}.snow-toggle{padding:5px 9px;font-size:10px}.snow-toggle span{display:none}.header-link{font-size:10px}.hero-extras{margin:22px 0}.house-floor-guide{display:none}.chapter-main blockquote{font-size:28px;padding-left:17px}.chapter-excerpt-body{font-size:18px}}

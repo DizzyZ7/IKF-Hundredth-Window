@@ -10,6 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
+const SITE_EDITION="0.4";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -132,6 +133,21 @@ byId("dialog-share").addEventListener("click",async()=>{
  try{await navigator.clipboard.writeText(address);byId("share-notice").textContent="Ссылка на окно скопирована";}
  catch{byId("share-notice").textContent="Ссылка: "+address;}
 });
+byId("hero-eira").addEventListener("click",()=>openApartment(70));
+byId("window-finder").addEventListener("submit",e=>{
+ e.preventDefault();
+ const field=byId("window-number");
+ if(!field.reportValidity())return;
+ const n=Number(field.value);
+ if(Number.isInteger(n)&&n>=1&&n<=99)openApartment(n);
+});
+const toggle=byId("snow-toggle");
+let showSnow=true;
+try{showSnow=localStorage.getItem("ikf-snow-on")!=="false";}catch{}
+function syncSnow(){byId("snowfall").classList.toggle("snow-off",!showSnow);toggle.setAttribute("aria-pressed",String(showSnow));toggle.title=showSnow?"Выключить снег":"Включить снег";}
+syncSnow();
+toggle.addEventListener("click",()=>{showSnow=!showSnow;try{localStorage.setItem("ikf-snow-on",String(showSnow));}catch{}syncSnow();});
+byId("dialog-story-link").addEventListener("click",e=>{if(e.currentTarget.getAttribute("href")?.startsWith("#"))dialog.close();});
 storySearch.addEventListener("input",drawStories);
 storyFilter.addEventListener("change",drawStories);
 function snow(){
@@ -147,7 +163,7 @@ function snow(){
 }
 async function fetchStories(){
  try{
-   const response=await fetch("./data/stories.json",{cache:"no-store"});
+   const response=await fetch("./data/stories.json?v=20261121-04",{cache:"no-store"});
    if(!response.ok)throw Error("Unavailable");
    const raw=await response.json();
    if(!Array.isArray(raw))throw Error("Invalid JSON");
