@@ -49,10 +49,10 @@ function renderStories(){
     card.setAttribute("role","button");card.tabIndex=0;
     card.setAttribute("aria-label","Подробнее об истории "+story.name);
     const top=element("div","story-top");
-    top.append(element("span","story-number",String(story.window).padStart(2,"0")),
+    top.append(element("span","story-number",story.window===null?"✧":String(story.window).padStart(2,"0")),
                element("span","story-type",story.subtitle||"История Люсхольма"));
     card.append(top,element("h3","",story.name),element("p","",story.description),element("span","story-author","Автор: "+story.author));
-    const show=()=>openWindow(story.window);
+    const show=()=>openStory(story);
     card.addEventListener("click",show);
     card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();show();}});
     list.append(card);
@@ -66,6 +66,26 @@ function renderStories(){
   join.href="https://t.me/chat_IKF";join.target="_blank";join.rel="noopener noreferrer";
   empty.append(join);list.append(empty);
 }
+
+function openStory(s){
+  lastFocus=document.activeElement;
+  currentWindow=Number.isInteger(s.window)?s.window:null;
+  numberEl.textContent=currentWindow===null?"История Люсхольма":"Квартира №"+currentWindow;
+  titleEl.textContent=s.name;
+  copyEl.textContent=s.description+" "+(s.excerpt||"");
+  metaEl.textContent="«"+s.title+"» · "+s.author;
+  lightButton.hidden=currentWindow===null;
+  if(currentWindow!==null){
+    lightButton.textContent=personalLights.has(currentWindow)?"Огонек зажжен ✓":"Зажечь огонек ✧";
+    lightButton.disabled=personalLights.has(currentWindow);
+  }
+  if(typeof s.ficbookUrl==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(s.ficbookUrl)){
+    storyLink.href=s.ficbookUrl;storyLink.textContent="Читать на Фикбуке ↗";storyLink.target="_blank";storyLink.rel="noopener noreferrer";
+  }else{
+    storyLink.href="#stories";storyLink.textContent="Глава скоро появится";storyLink.removeAttribute("target");storyLink.removeAttribute("rel");
+  }
+  if(!dialog.open)dialog.showModal();
+}
 function openWindow(n){
   currentWindow=n;lastFocus=document.activeElement;
   const s=byWindow(n);
@@ -73,6 +93,7 @@ function openWindow(n){
   titleEl.textContent=s?s.name:"Здесь еще будет история";
   copyEl.textContent=s?s.description+" "+(s.excerpt||""):"Это окно ждет своего героя. Может быть, именно вы расскажете, что произошло здесь в новогоднюю ночь?";
   metaEl.textContent=s?"«"+s.title+"» · "+s.author:"Девяносто девять квартир. Сколько угодно историй.";
+  lightButton.hidden=false;
   lightButton.textContent=personalLights.has(n)?"Огонек зажжен ✓":"Зажечь огонек ✧";
   lightButton.disabled=personalLights.has(n);
   if(s&&typeof s.ficbookUrl==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(s.ficbookUrl)){
@@ -125,7 +146,7 @@ async function loadStories(){
     if(!response.ok)throw new Error("Missing stories");
     const json=await response.json();
     if(!Array.isArray(json))throw new Error("Malformed stories");
-    const clean=json.filter(s=>s&&Number.isInteger(s.window)&&s.window>=1&&s.window<=99&&["name","title","author","description"].every(k=>typeof s[k]==="string"));
+    const clean=json.filter(s=>s&&(s.window===null||(Number.isInteger(s.window)&&s.window>=1&&s.window<=99))&&["name","title","author","description"].every(k=>typeof s[k]==="string"));
     if(clean.length)stories=clean;
   }catch{/* Embedded demo remains available without fetch. */}
   renderWindows();renderStories();
