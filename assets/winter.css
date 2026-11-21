@@ -1,0 +1,342 @@
+
+/* WINTER EDITORIAL · IKF v0.6 
+ * Single organized visual language over legacy site styles.
+ * No third-party imagery, no noisy decorative polygons.
+ */
+:root{
+  --night:#0f1d2c;--dusk:#183047;--wine:#814653;--gold:#e5bc87;--butter:#fae4b0;
+  --cream:#f1ede3;--paper:#f8f5ed;--ink:#213542;--steel:#bccbd0;
+  --quiet:#a9b9bc;--stroke:rgba(238,227,203,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{background:var(--night);color:#f3eddf;font-family:Manrope,system-ui,sans-serif;font-size:14px;line-height:1.85;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:-.022em;line-height:1.04}
+h2{font-size:clamp(47px,5.1vw,73px);margin-bottom:23px}
+h2 em{color:#e7be85}
+a,button{touch-action:manipulation}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #f5d69a;outline-offset:3px}
+.container{width:min(1180px,calc(100% - 64px));margin-inline:auto}
+.kicker{color:#ebc893;letter-spacing:.17em;font-size:10px;font-weight:800;text-transform:uppercase;margin:0 0 15px}
+.section{padding:clamp(85px,9vw,135px) 0}
+[hidden]{display:none!important}
+.btn{border-radius:7px;min-height:49px;padding:12px 21px;line-height:1.3;font-size:12px;box-shadow:none;transform:none;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:linear-gradient(125deg,#f1d09a,#dfb27c);border:1px solid #edd0a0;color:#213442;box-shadow:0 9px 25px rgba(6,15,25,.13)}
+.btn.primary:hover{background:#fae1b6}
+.btn.outline{color:#f1e9d8;border:1px solid rgba(230,209,180,.4);background:rgba(22,39,54,.25)}
+.btn.outline:hover{background:rgba(235,212,179,.11);border-color:#d7b88b}
+.skip-link{z-index:120}
+/* Top navigation */
+.site-header{position:absolute;max-width:1400px;inset:0 0 auto;margin:auto;padding:24px 42px;display:flex;align-items:center;justify-content:space-between;gap:22px;z-index:60;backdrop-filter:none}
+.brand{display:flex;align-items:center;gap:10px;min-width:160px}
+.brand-emblem{width:48px;height:48px;object-fit:cover;border:1px solid #eac58d88;border-radius:50%;box-shadow:0 2px 20px rgba(0,0,0,.18);flex:none}
+.brand strong{font-size:13px;letter-spacing:.18em;color:#fff4e4}
+.brand small{font-size:10px;color:#c7cdd0}
+.nav{display:flex;gap:25px;align-items:center;margin-left:auto}
+.nav a{font-size:11px;color:#cdd5d6;white-space:nowrap}
+.nav a:hover{color:#f4d4a1}
+.header-link{display:inline-flex;align-items:center;flex:none;color:#e8c58f;font-size:11px;white-space:nowrap;padding:9px 0;border-bottom:1px solid #e8c58f66}
+.snow-toggle{flex:none;display:flex;align-items:center;justify-content:center;gap:7px;padding:6px 12px;min-height:36px;border-radius:30px;background:#f1e7d40f;border:1px solid #d1b99677;color:#f2dfc1;font-size:11px}
+.snow-toggle:hover{background:#ffffff1d}
+/* Hero: true landscape with a foreground apartment block */
+.hero{position:relative;isolation:isolate;min-height:760px;background:linear-gradient(125deg,#0c1828 0%,#1a3045 54%,#17283a 100%);overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 78% 42%,#4a58613b,transparent 39%),radial-gradient(ellipse at 2% 80%,#39526742,transparent 43%)}
+.hero:after{height:115px;background:linear-gradient(transparent,#101f30)}
+.hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:center;min-height:750px;padding-top:130px;padding-bottom:65px}
+.hero-copy{max-width:525px;padding:12px 0 22px}
+.eyebrow{display:inline-block;margin:0 0 22px;padding:7px 15px;border:1px solid #f1dcc13d;background:#f1dcc109;border-radius:30px;color:#e1e1d7;font-size:10px;letter-spacing:.07em;text-transform:none}
+.edition-pill{display:inline-block;margin:0 0 20px 10px;border:0;background:none;padding:0;color:#d6b88e;font-size:9px;letter-spacing:.09em;vertical-align:baseline}
+.hero .kicker{margin-bottom:16px;color:#dcb888}
+.hero h1{font-size:clamp(76px,7.65vw,116px);line-height:.91;margin:0 0 30px;letter-spacing:-.038em;color:#fff6e9}
+.hero h1 em{color:#eac38e;font-style:italic}
+.lead{max-width:445px;font-size:14px;color:#d5dddc;line-height:1.9;margin-bottom:16px}
+.motto{color:#edd2a8;font:italic 24px/1.2 "Cormorant Garamond",Georgia,serif;margin-bottom:26px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+.hero-extras{margin-top:24px;max-width:445px;gap:12px}
+.eira-quick{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;width:100%;border-radius:6px;background:rgba(110,58,68,.33);color:#f9e8dd;border:1px solid #c6878066;border-left:3px solid #c7847e;padding:11px 15px;text-align:left;font-size:11px}
+.eira-quick strong{color:#ffcab8}
+.eira-quick:hover{background:rgba(136,68,80,.42)}
+.window-finder{display:flex;align-items:center;gap:10px;max-width:100%;border:1px solid #dee4df33;border-radius:6px;background:rgba(6,20,32,.35);padding:8px 10px 8px 14px}
+.window-finder label{font-size:11px;color:#d8e1df;margin-right:auto;white-space:nowrap}
+.window-finder input{color:#213440;background:#e8e2d8;border:0;border-radius:4px;font:12px Manrope,system-ui,sans-serif;padding:8px;width:76px;min-width:0}
+.window-finder button{background:#e8c18d;color:#213440;border:0;border-radius:4px;width:40px;height:36px;font-size:22px}
+/* Quiet illustrated skyline replaces misaligned trees/hills */
+.scene{position:relative;isolation:isolate;width:100%;height:575px;margin:0;align-self:center;background:linear-gradient(180deg,#273d5220,#1531424a);border-radius:45% 45% 0 0;overflow:visible}
+.scene:before{z-index:-1;content:"";position:absolute;inset:15% 0 0;background:radial-gradient(ellipse at 50% 65%,rgba(245,184,105,.13),transparent 65%)}
+.village-backdrop{position:absolute;z-index:0;inset:auto -8% 18px;height:65%;background:url("lussholm-skyline.svg") center bottom/100% 100% no-repeat;opacity:.62;pointer-events:none}
+.scene .moon{position:absolute;z-index:0;right:16%;top:12%;width:57px;height:57px;background:#faf0d6;border-radius:50%;box-shadow:0 0 54px 12px rgba(246,221,165,.15)}
+.scene .hill,.scene .pine,.scene .aurora,.house-floor-guide,.star-field{display:none!important}
+.scene .snowbank{position:absolute;z-index:4;bottom:11px;left:0;width:100%;height:26px;border-radius:50%;background:linear-gradient(#e4eeea,#bfd3d5);opacity:.78}
+.house{position:absolute;z-index:5;width:min(462px,91%);left:50%;bottom:31px;transform:translateX(-50%);filter:drop-shadow(0 15px 17px rgba(4,19,32,.33))}
+.house .roof{position:relative;height:23px;background:#cbd8d8;clip-path:polygon(0 100%,4% 18%,96% 18%,100% 100%);border:0}
+.house .roof-snow{position:absolute;left:0;right:0;top:0;height:9px;background:#f6f3e8}
+.house .wall{position:relative;padding:20px 26px 47px;border:9px solid #2d4658;border-top:0;border-bottom:8px solid #243b4b;background:repeating-linear-gradient(0deg,transparent 0 28px,#172b370d 28px 29px),linear-gradient(108deg,#576b7b,#3a5365 51%,#475e70);box-shadow:inset 7px 0 8px #21374a55,inset -7px 0 8px #21374a66}
+.house .house-label{margin:0 0 13px;color:#f4e3c6;font-size:8px;letter-spacing:.16em;white-space:nowrap;text-align:center}
+.windows{display:flex;flex-direction:column;gap:7px}
+.floor-row{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:7px;position:relative}
+.floor-row:before{content:attr(data-floor);position:absolute;top:50%;transform:translateY(-50%);left:-19px;color:#d1ddd9;font:10px Manrope,system-ui,sans-serif;opacity:.78}
+.window{appearance:none;display:block;aspect-ratio:.82;min-width:0;position:relative;margin:0;padding:0;border:2px solid #253e4f;border-radius:3px 3px 1px 1px;background:linear-gradient(135deg,#203747,#112634);cursor:pointer;transition:background .22s,box-shadow .22s,transform .22s}
+.window:before,.window:after{content:"";position:absolute;pointer-events:none;background:#28414e99}
+.window:before{width:2px;left:48%;top:0;bottom:0}
+.window:after{height:2px;top:46%;left:0;right:0}
+.window.lit{background:linear-gradient(125deg,#ffecad,#e5ab69 76%,#bf7c52);box-shadow:inset 0 0 6px #fff0b2,0 0 7px #edbb7a55}
+.window.featured:not(.eira-home){box-shadow:0 0 14px #ffe1a088, inset 0 0 6px #fff1c4}
+.window.eira-home{border-color:#e8a397;background:linear-gradient(145deg,#ffe3bb,#df9387 64%,#aa5163);box-shadow:0 0 7px 2px #d56b77aa,0 0 19px 4px #d98b7899}
+.window:hover,.window:focus-visible{transform:scale(1.24);z-index:8;border-color:#ffe4b6}
+.window:disabled{cursor:default}
+.house .door{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:39px;height:40px;border:4px solid #263a47;border-bottom:0;border-radius:18px 18px 0 0;background:radial-gradient(ellipse at 50% 20%,#9f784e99,#233746 65%)}
+.house .door:after{right:6px;top:22px;width:4px;height:4px;background:#ebd1a7}
+.festive-door{position:absolute;left:50%;transform:translateX(-50%);bottom:40px;width:29px;height:29px;border-radius:50%;border:7px dotted #476f5b;box-shadow:0 0 0 2px #244b45;z-index:2}
+.festive-door span{position:absolute;left:7px;top:19px;width:10px;height:6px;background:#a64d58;border-radius:5px}
+.scene-hint,.scene-eira{position:absolute;z-index:7;bottom:2px;font-size:9px;border-radius:4px;line-height:1.4;padding:8px 10px;white-space:nowrap}
+.scene-hint{right:0;background:#f5ecd9;color:#1e3541}
+.scene-eira{left:0;background:#593340;color:#ffe1d4;border:1px solid #b97f78}
+.scroll-cue{z-index:5;bottom:17px;color:#adc3c5;letter-spacing:.16em}
+/* Low-motion snowfall. Only decorative layer, never intercepts clicks. */
+.snowfall{pointer-events:none;position:fixed;inset:0;z-index:80;opacity:.72}
+.flake{background:#f0f4f0;width:2px;height:2px;box-shadow:0 0 3px rgba(255,255,255,.14);animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}
+.snowfall.snow-off{display:none}
+/* Intro as winter postcard; no giant repeated mascot */
+.intro{background:#172b3b}
+.intro-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(44px,6vw,90px);align-items:center;max-width:1090px}
+.intro-postcard{width:215px;min-height:300px;position:relative;display:flex;align-items:center;flex-direction:column;padding:18px;background:#e6e0d4;border:8px solid #f8f1e5;box-shadow:0 25px 45px #08131c77;transform:rotate(-4deg);color:#3f5360}
+.postcard-postmark{font-size:9px;letter-spacing:.13em;color:#8d6a56}
+.postcard-window{width:142px;height:176px;border-radius:75px 75px 6px 6px;border:12px solid #5d6370;margin:15px auto 20px;background:radial-gradient(circle at 50% 73%,#ffd7a0,#e79c67 35%,#496275 75%,#293e57);position:relative;box-shadow:0 0 20px #d6a47360}
+.postcard-window:before{content:"";position:absolute;width:8px;height:100%;top:0;left:49%;background:#685f64}
+.postcard-window:after{content:"";position:absolute;left:0;right:0;top:50%;height:8px;background:#685f64}
+.candle{position:absolute;bottom:23px;left:calc(50% - 8px);width:16px;height:40px;background:#f9edd3;border-radius:3px;box-shadow:0 0 10px #ffd49c}
+.candle:after{content:"";position:absolute;left:5px;top:-18px;width:7px;height:17px;border-radius:60% 60% 50% 50%;background:#fff3af;box-shadow:0 0 15px 5px #ffeab080}
+.postcard-copy{font:italic 24px/1.05 "Cormorant Garamond",Georgia,serif;text-align:center;color:#4c5660}
+.intro .columns{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.intro .columns p{font-size:13px;color:#cfdbd8;line-height:1.95;margin:0}
+.intro h2{color:#f6e9d9}
+.tags{margin-top:30px;gap:9px}
+.tags span{border:1px solid #d9d1bb44;padding:6px 11px;color:#cfdad6;font-size:10px;border-radius:20px}
+/* Chapter as a tasteful paper spread */
+.chapter-preview{background:linear-gradient(145deg,#f4efe4,#eae3d5);color:#2a3a43}
+.chapter-layout{display:grid;grid-template-columns:155px minmax(0,1fr);gap:64px;max-width:980px}
+.chapter-index{display:flex;flex-direction:column;align-items:center;color:#b17d63}
+.chapter-index>span{font:150px/.9 "Cormorant Garamond",Georgia,serif}
+.chapter-index small{color:#8d6a57;font-size:10px;letter-spacing:.14em}
+.chapter-line{height:145px;width:1px;background:linear-gradient(#bd9d7f,transparent);margin-top:27px}
+.chapter-preview .kicker{color:#9c634e}
+.chapter-preview h2{color:#243644}
+.chapter-preview h2 em{color:#96665b}
+.chapter-attribution{font-size:11px;font-weight:700;color:#8d6959}
+.chapter-main blockquote{max-width:680px;font:italic clamp(24px,3vw,35px)/1.33 "Cormorant Garamond",Georgia,serif;padding-left:23px;margin:30px 0;border-left:2px solid #b78769;color:#57453e}
+.chapter-excerpt{border-top:1px solid #a5947d66;border-bottom:1px solid #a5947d66;max-width:690px;margin-top:28px}
+.chapter-excerpt summary{color:#855a4e;font-size:12px;font-weight:800;padding:17px 3px;cursor:pointer}
+.chapter-excerpt-body{color:#3c474b;max-width:650px;font:20px/1.72 "Cormorant Garamond",Georgia,serif;padding:9px 0 22px}
+.chapter-excerpt-body .chapter-finish{color:#946651;font:11px Manrope,system-ui,sans-serif}
+/* Place cards: actual cohesive miniature illustrations */
+.places-section{background:#112536}
+.places-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:36px}
+.place-card,.place-card:nth-child(2),.place-card:nth-child(3){display:flex;flex-direction:column;min-height:0;padding:0;overflow:hidden;border:1px solid #c8d9d42b;border-radius:10px;background:#1b3243}
+.place-cover{display:block;width:100%;height:auto;aspect-ratio:420/220;object-fit:cover;border-bottom:1px solid #cbd7cf25}
+.place-body{flex:1;display:flex;flex-direction:column;gap:8px;padding:25px 25px 29px}
+.place-index{font-size:10px;color:#e5bc87;letter-spacing:.13em}
+.place-card h3{font-size:37px;color:#f6e9d9;margin:0}
+.place-card p{font-size:12px;line-height:1.8;color:#bdcbd0;margin:0}
+.places-note{color:#b4c5c6;font-size:11px;margin:24px 0 0}
+.place-icon{display:none!important}
+/* Stories: soft paper, restrained ornamentation */
+.stories-section{background:#f0eee7;color:#283e49}
+.stories-section .kicker{color:#976b51}
+.stories-section h2 em{color:#9a655c}
+.stories-section .section-head{display:flex;align-items:end;justify-content:space-between;gap:50px;margin-bottom:35px}
+.stories-section .section-head>p{max-width:340px;font-size:12px;line-height:1.9;color:#657a80;margin-bottom:4px}
+.story-controls{display:flex;gap:12px;margin-bottom:12px}
+.story-controls input,.story-controls select{color:#294454;background:#fbfaf6;border:1px solid #c9d2d1;border-radius:6px;min-height:46px;font:12px Manrope,system-ui,sans-serif;padding:11px 14px}
+.story-controls input{flex:1;min-width:0}
+.story-controls select{width:min(235px,40%)}
+.story-count{color:#657a80;font-size:11px;margin-bottom:19px}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.story-card{position:relative;display:flex;flex-direction:column;min-height:255px;border:1px solid #d5dbd6;background:#fffdf8;border-radius:9px;padding:26px;box-shadow:0 8px 24px rgba(31,52,64,.035);transition:transform .22s,box-shadow .22s}
+.story-card:hover{transform:translateY(-3px);box-shadow:0 15px 28px rgba(31,52,64,.09)}
+.story-card:after{content:"";position:absolute;right:16px;bottom:15px;width:26px;height:39px;border:1.5px solid #adc2bd6e;border-radius:14px 14px 2px 2px;opacity:.6}
+.story-card:before{content:"";position:absolute;right:29px;bottom:16px;width:1px;height:38px;background:#adc2bd6e}
+.story-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:25px}
+.story-number{font:47px/.9 "Cormorant Garamond",Georgia,serif;color:#ad7b5c}
+.story-type{font-size:9px;color:#778c90;line-height:1.4;text-align:right}
+.story-card h3{font-size:40px;margin-bottom:14px;color:#2a4049}
+.story-card p{font-size:12px;color:#647980;line-height:1.85;position:relative;z-index:1}
+.story-author{margin-top:auto;position:relative;z-index:1;padding-top:18px;font-size:11px;font-weight:800;color:#9b6855}
+.story-card.empty{background:#e4e9e5;border:1px dashed #a8b9b6}
+.story-card.empty h3{color:#536d74}
+.story-note{border-top:1px solid #d1d9d5;margin-top:35px;padding-top:22px;color:#647a7f;font-size:12px}
+.no-results{grid-column:1/-1;color:#596f76;border:1px dashed #b1c2bd;padding:30px}
+/* Candle in the window, rather than mascot repeated again */
+.light-section{background:linear-gradient(118deg,#1b3543,#213d43);color:#f8efe2}
+.light-layout{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(65px,8vw,125px);align-items:center}
+.light-section p:not(.kicker){font-size:14px;line-height:1.95;color:#cedbd5}
+.light-section small{color:#b0c4c4;font-size:10px}
+.kindness-illustration{position:relative;display:flex;align-items:center;flex-direction:column;margin:auto;padding:36px 20px;max-width:320px;min-height:335px;width:100%;background:radial-gradient(ellipse at 50% 50%,#e9be8050,transparent 70%)}
+.kindness-frame{height:240px;width:174px;border:13px solid #d6ad7c;border-radius:91px 91px 3px 3px;position:relative;background:linear-gradient(160deg,#32495e,#f9c783 70%,#cb8458);box-shadow:0 0 50px 10px #e8aa6150,inset 0 0 30px #efcb8f7a}
+.kindness-glass{position:absolute;inset:0;overflow:hidden;border-radius:80px 80px 1px 1px}
+.kindness-glass:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:8px;transform:translateX(-50%);background:#8b6957}
+.kindness-glass:after{content:"";position:absolute;left:0;right:0;top:54%;height:8px;background:#8b6957}
+.kindness-candle{position:absolute;left:calc(50% - 11px);bottom:29px;width:22px;height:58px;border-radius:4px;background:#f9edda;box-shadow:0 0 12px #ffe9b4}
+.kindness-candle:before{content:"";position:absolute;top:-24px;left:7px;height:22px;width:9px;background:#fff6b0;border-radius:70% 70% 45% 45%;box-shadow:0 0 22px 9px #ffe6a17a}
+.kindness-sill{position:absolute;left:-33px;right:-33px;bottom:-18px;height:19px;border-radius:3px;background:#e5d8c2;box-shadow:0 8px 0 #adb7b1}
+.kindness-caption{font:italic 24px "Cormorant Garamond",Georgia,serif;margin-top:41px;color:#f0cf9f}
+.light-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin:28px 0 11px}
+#light-status{color:#eacb9b;font-size:11px}
+#light-random:disabled{opacity:.65;cursor:default;transform:none}
+/* Mystery: not garish */
+.mystery-section{background:#152536}
+.mystery-layout{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(60px,7vw,110px);align-items:center}
+.mystery-layout p:not(.kicker):not(.sealed){color:#c7d6d4;font-size:13px;line-height:1.9}
+.envelope{width:min(380px,100%);height:252px;max-width:100%;margin:20px auto;background:linear-gradient(142deg,#f0ddbc,#bca181);border-radius:4px;transform:rotate(-4deg);box-shadow:0 18px 42px #06142091}
+.envelope:after{opacity:.8}
+.envelope-top{background:linear-gradient(#f8ead0,#c6a687)}
+.seal{background:#89434b;color:#f4dab1;border:4px double #d6b193}
+.date{border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke);display:flex;gap:17px;align-items:center;margin:28px 0 20px;padding:17px 0}
+.date span{color:#e7c38f}.date strong{font-size:13px}.date small{display:block;color:#bacacc;font-size:11px}
+.sealed{color:#e7c18b;font-size:11px;margin:0}
+/* Gentle invitation */
+.join-section{background:linear-gradient(150deg,#1a3441,#102333);text-align:center}
+.join-section .container{max-width:800px}
+.join-divider{margin-bottom:30px}
+.join-section h2{font-size:clamp(56px,7vw,87px)}
+.join-section p:not(.kicker){max-width:560px;color:#cbdad7;font-size:14px;line-height:1.95;margin:0 auto 29px}
+.join-section small{display:block;margin-top:22px;font-size:10px;color:#abbfc0}
+footer{background:#0b1927;border-top:1px solid #d7c5a133}
+.footer{display:flex;gap:24px;align-items:center;justify-content:space-between;padding:34px 0;min-height:120px}
+.footer-brand{display:flex;align-items:center;gap:13px;font-size:11px;letter-spacing:.14em;line-height:1.4}
+.footer-mark{width:37px;height:37px;flex:none;border-radius:50%}
+.footer p{font-size:10px;color:#9db1b8;line-height:1.7;margin:0}
+.footer>div{display:flex;gap:23px;color:#edc796;font-size:11px}
+.build-stamp{font-size:10px;color:#d7b688}
+/* Accessible window details */
+.window-dialog{width:min(500px,calc(100vw - 32px));max-height:min(86vh,760px);overflow-y:auto;background:linear-gradient(145deg,#263c4a,#142637);border:1px solid #c7a87d66;border-radius:10px;color:#f5eee0;box-shadow:0 25px 75px #06131ea9;padding:37px}
+.window-dialog::backdrop{background:rgba(5,16,29,.79);backdrop-filter:blur(5px)}
+.dialog-close{position:absolute;right:13px;top:8px;width:40px;height:40px;border:0;background:none;color:#f4ead7;font-size:27px}
+.dialog-number{color:#e8bf89;font-size:10px;letter-spacing:.11em;text-transform:uppercase;margin-bottom:14px}
+.window-dialog h2{font-size:46px;margin-bottom:18px}
+.window-dialog p{color:#d0dbd7;font-size:13px;line-height:1.85}
+.window-dialog .dialog-meta{color:#e8c396;font-size:11px}
+.dialog-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:23px}
+.dialog-actions .btn{font-size:11px}
+.dialog-stories button{background:#273f4c;color:#f4ead8;border:1px solid #c4ac845c;padding:11px;border-radius:5px}
+.dialog-stories button:hover{background:#344e5c}
+.light-already-lit{display:inline-flex;padding:10px 13px;color:#edcc99;background:#e5bf8120;border:1px solid #e5bf8166;font-size:11px;border-radius:5px}
+.share-notice{color:#e6c18d!important;font-size:11px!important}
+@media(max-width:1160px){
+ .nav{gap:14px}.nav a{font-size:10px}
+ .site-header{gap:15px;padding:23px 28px}
+ .hero-layout{gap:20px}
+}
+@media(max-width:1000px){
+ .nav{display:none}
+ .site-header{justify-content:flex-start}
+ .header-link{margin-left:auto}
+ .hero-layout{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}
+ .hero h1{font-size:clamp(70px,8vw,98px)}
+ .scene{height:550px}
+ .house{width:min(425px,94%)}
+ .floor-row{gap:6px}.windows{gap:6px}
+ .intro-layout{grid-template-columns:205px minmax(0,1fr);gap:40px}
+ .intro .columns{gap:20px}
+}
+@media(max-width:800px){
+ .container{width:min(560px,calc(100% - 40px))}
+ .hero{min-height:0}
+ .hero-layout{display:flex;flex-direction:column;gap:0;align-items:stretch;padding-top:125px;padding-bottom:70px;min-height:0}
+ .hero-copy{max-width:100%;padding-bottom:26px}
+ .hero h1{font-size:clamp(78px,13vw,110px)}
+ .scene{width:min(540px,100%);height:540px;margin:0 auto}
+ .house{width:min(435px,92%)}
+ .scroll-cue{display:none}
+ .intro-layout,.chapter-layout,.light-layout,.mystery-layout{grid-template-columns:1fr;gap:45px}
+ .intro-postcard{width:185px;min-height:270px;margin-inline:auto}
+ .postcard-window{width:127px;height:156px}
+ .intro .columns{grid-template-columns:1fr 1fr}
+ .chapter-index{flex-direction:row;align-items:center;gap:17px}
+ .chapter-index>span{font-size:85px}
+ .chapter-index small{margin:0}
+ .chapter-line{display:none}
+ .places-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .place-card:last-child{grid-column:span 2}
+ .stories-section .section-head{flex-direction:column;align-items:start;gap:14px}
+ .stories-section .section-head>p{max-width:100%}
+ .story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .story-grid>:last-child{grid-column:span 2}
+ .kindness-illustration{max-width:290px}
+ .mystery-layout .envelope{order:0}
+ .footer{flex-wrap:wrap}
+}
+@media(max-width:560px){
+ html{scroll-padding-top:70px}
+ .container{width:calc(100% - 34px)}
+ .section{padding:78px 0}
+ h2{font-size:clamp(46px,12vw,61px)}
+ .site-header{padding:15px 17px;gap:9px}
+ .brand{gap:8px;min-width:0}
+ .brand-emblem{width:39px;height:39px}
+ .brand strong{font-size:12px}.brand small{font-size:9px}
+ .header-link{font-size:10px;white-space:nowrap}
+ .snow-toggle{min-width:35px;width:35px;height:35px;padding:0;flex:none}
+ .snow-toggle span{display:none}
+ .hero-layout{padding-top:104px;padding-bottom:68px}
+ .eyebrow{font-size:9px;margin:0 0 10px}
+ .edition-pill{display:table;margin:0 0 23px;font-size:9px}
+ .hero .kicker{font-size:9px}
+ .hero h1{font-size:clamp(70px,15.6vw,96px);line-height:.94;margin-bottom:25px}
+ .lead{font-size:13px}
+ .motto{font-size:21px;margin-bottom:24px}
+ .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+ .hero-actions .btn{width:100%}
+ .hero-extras{margin-top:20px}
+ .eira-quick{font-size:10px}
+ .scene{width:100%;height:433px;margin-top:13px}
+ .moon{width:40px!important;height:40px!important;top:8%!important}
+ .village-backdrop{inset:auto -4% 20px;height:57%;opacity:.55}
+ .house{width:min(345px,95%);bottom:29px}
+ .house .roof{height:17px}
+ .house .wall{padding:12px 14px 41px;border-left-width:7px;border-right-width:7px;border-bottom-width:7px}
+ .house .house-label{font-size:6px;letter-spacing:.08em;margin-bottom:8px}
+ .windows{gap:5px}.floor-row{gap:5px}.floor-row:before{left:-12px;font-size:8px}
+ .window{border-width:1.5px;border-radius:2px}
+ .window:before{width:1.5px}.window:after{height:1.5px}
+ .scene .snowbank{height:20px;bottom:5px}
+ .scene-hint,.scene-eira{bottom:3px;font-size:8px;padding:7px 8px}
+ .intro .columns{grid-template-columns:1fr;gap:15px}
+ .intro-postcard{transform:rotate(-2deg);margin-bottom:5px}
+ .chapter-main blockquote{font-size:27px}
+ .chapter-excerpt-body{font-size:19px}
+ .places-grid{grid-template-columns:1fr;gap:17px}
+ .place-card:last-child{grid-column:auto}
+ .place-body{padding:22px}
+ .place-card h3{font-size:35px}
+ .story-controls{flex-direction:column}
+ .story-controls select{width:100%}
+ .story-grid{grid-template-columns:1fr;gap:15px}
+ .story-grid>:last-child{grid-column:auto}
+ .story-card{min-height:240px;padding:23px}
+ .story-card h3{font-size:37px}
+ .kindness-illustration{margin-bottom:8px}
+ .mystery-layout{gap:40px}
+ .envelope{width:min(295px,95%);height:196px}
+ .join-section h2{font-size:clamp(54px,14vw,74px)}
+ .footer{display:flex;flex-direction:column;align-items:flex-start;gap:17px}
+ .footer p{margin:0}
+ .window-dialog{padding:30px 24px}
+ .window-dialog h2{font-size:43px}
+ .dialog-actions .btn{width:100%}
+}
+@media(max-width:350px){
+ .brand small{display:none}
+ .site-header{gap:7px}
+ .header-link{font-size:9px}
+ .scene{height:367px}
+ .house{width:96%;bottom:28px}
+ .house .wall{padding:10px 11px 39px}
+ .windows,.floor-row{gap:4px}
+ .scene-eira,.scene-hint{font-size:7.2px;padding:6px}
+ .hero h1{font-size:67px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+ .snowfall{display:none!important}
+}
