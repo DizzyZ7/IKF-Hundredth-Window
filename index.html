@@ -14,7 +14,7 @@
 <div class="snowfall" id="snowfall" aria-hidden="true"></div>
 <header class="site-header">
 <a class="brand" href="#top"><span class="brand-symbol">✳</span><span><strong>ИКФ</strong><small>новогодняя история</small></span></a>
-<nav class="nav" aria-label="Навигация"><a href="#world">О Люсхольме</a><a href="#stories">Истории</a><a href="#mystery">Тайна</a></nav>
+<nav class="nav" aria-label="Навигация"><a href="#world">О Люсхольме</a><a href="#places">Город</a><a href="#stories">Истории</a><a href="#mystery">Тайна</a></nav>
 <a class="header-link" href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Стать автором ↗</a>
 </header>
 <main id="main">
@@ -33,7 +33,7 @@
 <div class="hill hill-back"></div><div class="hill hill-front"></div>
 <div class="pine pine-a"></div><div class="pine pine-b"></div><div class="pine pine-c"></div>
 <div class="house"><div class="roof"></div><div class="wall"><div class="house-label">АЛЬБАТРОС &nbsp; ✦ &nbsp; МАЯЧНАЯ, 7</div><div class="windows" id="window-grid" role="group" aria-label="Окна дома"></div><div class="door">✦</div></div></div>
-<div class="snowbank"></div><div class="scene-hint">✦ &nbsp; Нажмите на любое окно</div>
+<div class="snowbank"></div><div class="scene-hint">✦ &nbsp; Нажмите на любое окно</div><div class="scene-eira">✧ &nbsp; Эйра Линдт · №70 · 7-й этаж</div>
 </div></div>
 <div class="scroll-cue">Листайте вниз &nbsp; ↓</div>
 </section>
@@ -42,9 +42,10 @@
 <div class="columns"><p>Небольшой вымышленный североевропейский город на берегу холодного залива. Здесь пахнет кардамоном, хвойным лесом и морским ветром. Зимой сумерки приходят рано, а в окнах зажигают лампы для тех, кто ищет дорогу домой.</p><p>Вечером 31 декабря в доме «Альбатрос» гаснет электричество. Вскоре появляются приглашения от квартиры №100, которой нет ни на одном плане. Кто их оставил? Кого в ней ждут? И почему именно сегодня?</p></div>
 <div class="tags"><span>Северная сказка</span><span>Мягкая мистика</span><span>Теплые истории</span><span>Одна ночь</span></div>
 </div></div></section>
+<section class="section places-section" id="places"><div class="container"><p class="kicker">Мир, который мы создаем вместе</p><h2>Места <em>Люсхольма</em></h2><div class="places-grid"><article class="place-card"><span>01 / 03</span><div class="place-icon" aria-hidden="true">⌂</div><h3>Маячная улица</h3><p>Фонари, заснеженные дворы и дом «Альбатрос», где все начинается.</p></article><article class="place-card"><span>02 / 03</span><div class="place-icon" aria-hidden="true">✧</div><h3>Пекарня Фриды</h3><p>Кардамоновые узелки, горячий кофе и разговоры, которые никогда не бывают короткими.</p></article><article class="place-card"><span>03 / 03</span><div class="place-icon" aria-hidden="true">≈</div><h3>Северный порт</h3><p>Морской залив, рыбацкие лодки и вечерний паром, идущий домой сквозь снег.</p></article></div><p class="places-note">Это только первые места. Авторы могут открывать новые уголки города.</p></div></section>
 <section class="section stories-section" id="stories"><div class="container">
 <div class="section-head"><div><p class="kicker">Голоса Люсхольма</p><h2>За каждым окном — <em>жизнь</em></h2></div><p>Авторы ИКФ создают героев, которые встречаются, ошибаются, помогают друг другу и становятся частью одной новогодней ночи.</p></div>
-<div class="story-grid" id="story-grid" aria-live="polite"></div>
+<div class="story-controls"><label class="sr-only" for="story-search">Поиск по герою, главе или автору</label><input id="story-search" type="search" placeholder="Поиск героя, главы или автора..." autocomplete="off"><label class="sr-only" for="story-filter">Местоположение</label><select id="story-filter"><option value="all">Все истории</option><option value="house">Дом «Альбатрос»</option><option value="city">Другие места города</option></select></div><p class="story-count" id="story-count" aria-live="polite"></p><div class="story-grid" id="story-grid"></div>
 <p class="story-note">✳ &nbsp; Здесь не бывает «слишком поздно» для новой истории. Число участников не ограничено.</p>
 </div></section>
 <section class="section light-section"><div class="container light-layout"><div class="glowing-orb" aria-hidden="true">✦</div><div>
@@ -65,5 +66,5 @@
 <small>Без ограничения числа авторов · Без конкурса · С указанием авторства</small></div></section>
 </main>
 <footer><div class="container footer"><a href="#top" class="footer-brand">✳ &nbsp; СВЕТ В СОТОМ ОКНЕ</a><p>Истории ИКФ · 2026<br>Создано с теплом для тех, кто рядом.</p><div><a href="https://t.me/chat_IKF" target="_blank" rel="noopener noreferrer">Чат ИКФ ↗</a><a href="https://github.com/DizzyZ7/IKF-Hundredth-Window" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
-<dialog id="window-dialog" class="window-dialog" aria-labelledby="dialog-title"><button type="button" id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div class="dialog-number" id="dialog-number"></div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><p class="dialog-meta" id="dialog-meta"></p><div class="dialog-actions"><button type="button" id="dialog-light" class="btn primary">Зажечь огонек ✧</button><a id="dialog-story-link" class="btn outline" href="#stories">К историям ↓</a></div></dialog>
+<dialog id="window-dialog" class="window-dialog" aria-labelledby="dialog-title"><button type="button" id="dialog-close" class="dialog-close" aria-label="Закрыть">×</button><div class="dialog-number" id="dialog-number"></div><h2 id="dialog-title"></h2><p id="dialog-copy"></p><p class="dialog-meta" id="dialog-meta"></p><div id="dialog-stories" class="dialog-stories"></div><div class="dialog-actions"><button type="button" id="dialog-light" class="btn primary">Зажечь огонек ✧</button><a id="dialog-story-link" class="btn outline" href="#stories">К историям ↓</a><button id="dialog-share" class="btn outline" type="button">Поделиться окном ↗</button></div><p id="share-notice" class="share-notice" aria-live="polite"></p></dialog>
 </body></html>

@@ -1,154 +1,162 @@
 "use strict";
-const embeddedStories=[{
-  id:"eira-lindt",window:74,title:"Там, где оставляют свет",name:"Эйра Линдт",
-  subtitle:"Глава первая · готовится",author:"ИКФ",
-  description:"Эйра работает с городскими картами. Она точно знает: в «Альбатросе» всего 99 квартир. Кто же пригласил ее в сотую?",
-  excerpt:"«Ты просто идешь познакомиться с соседом», — сказала она своему отражению. Но впервые за долгое время ей захотелось ошибиться.",
-  ficbookUrl:null
+/* Public, spoiler-free storybook. Final content is not bundled before 31 December. */
+const demoStories=[{
+ id:"eira-lindt",window:70,floor:7,location:"Альбатрос",title:"Там, где оставляют свет",
+ name:"Эйра Линдт",subtitle:"Первая глава · готовится к публикации",author:"ИКФ",
+ description:"Эйра работает с картами и точно знает: в «Альбатросе» 99 квартир. Кто пригласил ее в сотую?",
+ excerpt:"«Ты просто идешь познакомиться с соседом», — сказала она своему отражению. Но впервые за долгое время ей захотелось ошибиться.",
+ ficbookUrl:null
 }];
-let stories=embeddedStories;
-let currentWindow=null,lastFocus=null;
-const grid=document.getElementById("window-grid");
-const list=document.getElementById("story-grid");
-const dialog=document.getElementById("window-dialog");
-const numberEl=document.getElementById("dialog-number");
-const titleEl=document.getElementById("dialog-title");
-const copyEl=document.getElementById("dialog-copy");
-const metaEl=document.getElementById("dialog-meta");
-const lightButton=document.getElementById("dialog-light");
-const storyLink=document.getElementById("dialog-story-link");
-function readLights(){
-  try{
-    const v=JSON.parse(localStorage.getItem("ikf-window-lights-v1")||"[]");
-    return Array.isArray(v)?v.filter(n=>Number.isInteger(n)&&n>=1&&n<=99):[];
-  }catch{return [];}
+let stories=demoStories;
+let selectedStory=null,selectedWindow=null,lastFocus=null;
+const byId=id=>document.getElementById(id);
+const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
+const storySearch=byId("story-search"),storyFilter=byId("story-filter");
+function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
+function readLights(){try{const a=JSON.parse(localStorage.getItem("ikf-window-lights-v1")||"[]");return Array.isArray(a)?a.filter(n=>Number.isInteger(n)&&n>=1&&n<=99):[]}catch{return []}}
+const lights=new Set(readLights());
+function saveLights(){try{localStorage.setItem("ikf-window-lights-v1",JSON.stringify([...lights]))}catch{}}
+function floorFor(number){return Math.floor((number-1)/11)+1;}
+function storiesAt(number){return stories.filter(s=>s.window===number);}
+function naturalLight(number){return (number*37+19)%13<5||number===70;}
+function drawHouse(){
+ grid.replaceChildren();
+ for(let floor=9;floor>=1;floor--){
+   const row=make("div","floor-row");row.dataset.floor=String(floor);
+   row.setAttribute("role","group");row.setAttribute("aria-label",floor+"-й этаж");
+   for(let i=1;i<=11;i++){
+     const n=(floor-1)*11+i;const resident=storiesAt(n);
+     const button=make("button","window");button.type="button";button.dataset.window=String(n);
+     button.title="Квартира №"+n+", "+floor+"-й этаж"+(resident.length?" — "+resident.map(x=>x.name).join(", "):"");
+     button.setAttribute("aria-label",button.title);
+     if(naturalLight(n)||lights.has(n))button.classList.add("lit");
+     if(resident.length)button.classList.add("featured");
+     if(n===70)button.classList.add("eira-home");
+     if(lights.has(n))button.classList.add("user-lit");
+     button.addEventListener("click",()=>openApartment(n));
+     row.append(button);
+   }
+   grid.append(row);
+ }
 }
-const personalLights=new Set(readLights());
-function saveLights(){try{localStorage.setItem("ikf-window-lights-v1",JSON.stringify([...personalLights]));}catch{}}
-function element(tag,cl,text){const e=document.createElement(tag);if(cl)e.className=cl;if(text!==undefined)e.textContent=text;return e;}
-function byWindow(n){return stories.find(s=>s.window===n);}
-function defaultGlow(n){return ((n*37+19)%13<5)||n===74;}
-function renderWindows(){
-  grid.replaceChildren();
-  for(let n=1;n<=99;n++){
-    const s=byWindow(n),b=element("button","window");
-    b.type="button";b.dataset.window=String(n);
-    b.setAttribute("aria-label","Квартира "+n+(s?", "+s.name:""));
-    b.title="Квартира "+n+(s?" · "+s.name:"");
-    if(defaultGlow(n)||personalLights.has(n))b.classList.add("lit");
-    if(s)b.classList.add("featured");
-    if(personalLights.has(n))b.classList.add("user-lit");
-    b.addEventListener("click",()=>openWindow(n));
-    grid.append(b);
-  }
+function storyMatches(s,term,place){
+ if(place==="house"&&s.window===null)return false;
+ if(place==="city"&&s.window!==null)return false;
+ if(!term)return true;
+ return [s.name,s.author,s.title,s.description,s.subtitle,s.location].filter(Boolean).join(" ").toLocaleLowerCase("ru").includes(term);
 }
-function renderStories(){
-  list.replaceChildren();
-  for(const story of stories){
-    const card=element("article","story-card");
-    card.setAttribute("role","button");card.tabIndex=0;
-    card.setAttribute("aria-label","Подробнее об истории "+story.name);
-    const top=element("div","story-top");
-    top.append(element("span","story-number",story.window===null?"✧":String(story.window).padStart(2,"0")),
-               element("span","story-type",story.subtitle||"История Люсхольма"));
-    card.append(top,element("h3","",story.name),element("p","",story.description),element("span","story-author","Автор: "+story.author));
-    const show=()=>openStory(story);
-    card.addEventListener("click",show);
-    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();show();}});
-    list.append(card);
-  }
-  const empty=element("article","story-card empty");
-  const top=element("div","story-top");
-  top.append(element("span","story-number","∞"),element("span","story-type","Ваша история"));
-  empty.append(top,element("h3","","Здесь может быть ваш герой"),
-    element("p","","Присоединяйтесь к проекту, придумайте персонажа и напишите свою новогоднюю главу."));
-  const join=element("a","story-author","Стать автором ↗");
-  join.href="https://t.me/chat_IKF";join.target="_blank";join.rel="noopener noreferrer";
-  empty.append(join);list.append(empty);
+function drawStories(){
+ list.replaceChildren();
+ const term=storySearch.value.trim().toLocaleLowerCase("ru"),place=storyFilter.value;
+ const matching=stories.filter(s=>storyMatches(s,term,place));
+ byId("story-count").textContent=matching.length===1?"Найдена 1 история":"Историй найдено: "+matching.length;
+ for(const s of matching){
+   const card=make("article","story-card"),top=make("div","story-top");
+   const placeText=s.window===null?"Люсхольм":"Квартира "+s.window+" · "+floorFor(s.window)+"-й этаж";
+   top.append(make("span","story-number",s.window===null?"✧":String(s.window).padStart(2,"0")),make("span","story-type",placeText));
+   card.append(top,make("h3","",s.name),make("p","",s.description),make("span","story-author","Автор: "+s.author));
+   card.tabIndex=0;card.setAttribute("role","button");card.setAttribute("aria-label","Подробнее: "+s.name);
+   card.addEventListener("click",()=>openStory(s));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openStory(s)}});
+   list.append(card);
+ }
+ if(!matching.length)list.append(make("p","no-results","Пока таких историй нет. Попробуйте другой поиск."));
+ if(!term&&place==="all"){
+   const empty=make("article","story-card empty"),top=make("div","story-top");
+   top.append(make("span","story-number","∞"),make("span","story-type","Ваша история"));
+   empty.append(top,make("h3","","Здесь может быть ваш герой"),make("p","","В Люсхольме хватит места всем. Придумайте героя и напишите свою главу."));
+   const link=make("a","story-author","Стать автором ↗");link.href="https://t.me/chat_IKF";link.target="_blank";link.rel="noopener noreferrer";
+   empty.append(link);list.append(empty);
+ }
 }
-
+function validFicbook(u){return typeof u==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(u);}
+function displayStory(s){
+ selectedStory=s;
+ byId("dialog-number").textContent=s.window===null?"История Люсхольма":"Квартира №"+s.window+" · "+floorFor(s.window)+"-й этаж";
+ byId("dialog-title").textContent=s.name;
+ byId("dialog-copy").textContent=s.description+(s.excerpt?" "+s.excerpt:"");
+ byId("dialog-meta").textContent="«"+s.title+"» · "+s.author;
+ const link=byId("dialog-story-link");
+ if(validFicbook(s.ficbookUrl)){link.href=s.ficbookUrl;link.textContent="Читать на Фикбуке ↗";link.target="_blank";link.rel="noopener noreferrer";}
+ else {link.href="#stories";link.textContent="Глава скоро появится";link.removeAttribute("target");link.removeAttribute("rel");}
+ const light=byId("dialog-light");
+ light.hidden=s.window===null;
+ if(s.window!==null){light.disabled=lights.has(s.window);light.textContent=lights.has(s.window)?"Огонек зажжен ✓":"Зажечь огонек ✧";}
+ const choices=byId("dialog-stories");choices.replaceChildren();
+ if(s.window!==null)for(const other of storiesAt(s.window)){
+   if(storiesAt(s.window).length<=1)break;
+   const button=make("button","",other.name+" · "+other.author);button.type="button";
+   button.setAttribute("aria-current",String(other.id===s.id));
+   button.addEventListener("click",()=>displayStory(other));choices.append(button);
+ }
+}
 function openStory(s){
-  lastFocus=document.activeElement;
-  currentWindow=Number.isInteger(s.window)?s.window:null;
-  numberEl.textContent=currentWindow===null?"История Люсхольма":"Квартира №"+currentWindow;
-  titleEl.textContent=s.name;
-  copyEl.textContent=s.description+" "+(s.excerpt||"");
-  metaEl.textContent="«"+s.title+"» · "+s.author;
-  lightButton.hidden=currentWindow===null;
-  if(currentWindow!==null){
-    lightButton.textContent=personalLights.has(currentWindow)?"Огонек зажжен ✓":"Зажечь огонек ✧";
-    lightButton.disabled=personalLights.has(currentWindow);
-  }
-  if(typeof s.ficbookUrl==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(s.ficbookUrl)){
-    storyLink.href=s.ficbookUrl;storyLink.textContent="Читать на Фикбуке ↗";storyLink.target="_blank";storyLink.rel="noopener noreferrer";
-  }else{
-    storyLink.href="#stories";storyLink.textContent="Глава скоро появится";storyLink.removeAttribute("target");storyLink.removeAttribute("rel");
-  }
-  if(!dialog.open)dialog.showModal();
+ lastFocus=document.activeElement;selectedWindow=s.window;
+ displayStory(s);byId("share-notice").textContent="";
+ if(!dialog.open)dialog.showModal();
 }
-function openWindow(n){
-  currentWindow=n;lastFocus=document.activeElement;
-  const s=byWindow(n);
-  numberEl.textContent="Квартира №"+n;
-  titleEl.textContent=s?s.name:"Здесь еще будет история";
-  copyEl.textContent=s?s.description+" "+(s.excerpt||""):"Это окно ждет своего героя. Может быть, именно вы расскажете, что произошло здесь в новогоднюю ночь?";
-  metaEl.textContent=s?"«"+s.title+"» · "+s.author:"Девяносто девять квартир. Сколько угодно историй.";
-  lightButton.hidden=false;
-  lightButton.textContent=personalLights.has(n)?"Огонек зажжен ✓":"Зажечь огонек ✧";
-  lightButton.disabled=personalLights.has(n);
-  if(s&&typeof s.ficbookUrl==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(s.ficbookUrl)){
-    storyLink.href=s.ficbookUrl;storyLink.textContent="Читать на Фикбуке ↗";storyLink.target="_blank";storyLink.rel="noopener noreferrer";
-  }else if(s){
-    storyLink.href="#stories";storyLink.textContent="Глава скоро появится";storyLink.removeAttribute("target");storyLink.removeAttribute("rel");
-  }else{
-    storyLink.href="https://t.me/chat_IKF";storyLink.textContent="Стать автором ↗";storyLink.target="_blank";storyLink.rel="noopener noreferrer";
-  }
-  if(!dialog.open)dialog.showModal();
+function openApartment(n){
+ selectedWindow=n;
+ const group=storiesAt(n);
+ if(group.length){openStory(group[0]);return;}
+ lastFocus=document.activeElement;selectedStory=null;
+ byId("dialog-number").textContent="Квартира №"+n+" · "+floorFor(n)+"-й этаж";
+ byId("dialog-title").textContent="Здесь еще будет история";
+ byId("dialog-copy").textContent="Это окно ждет своего героя. Возможно, именно вы расскажете, что произошло здесь в новогоднюю ночь?";
+ byId("dialog-meta").textContent="Девяносто девять квартир. Сколько угодно историй.";
+ const light=byId("dialog-light");light.hidden=false;light.disabled=lights.has(n);light.textContent=lights.has(n)?"Огонек зажжен ✓":"Зажечь огонек ✧";
+ const link=byId("dialog-story-link");link.href="https://t.me/chat_IKF";link.textContent="Стать автором ↗";link.target="_blank";link.rel="noopener noreferrer";
+ byId("dialog-stories").replaceChildren();byId("share-notice").textContent="";
+ if(!dialog.open)dialog.showModal();
 }
 function lightWindow(n){
-  if(!Number.isInteger(n)||n<1||n>99)return;
-  personalLights.add(n);saveLights();
-  const b=grid.querySelector('[data-window="'+n+'"]');
-  if(b)b.classList.add("lit","user-lit");
-  document.getElementById("light-status").textContent=personalLights.size===1?"Вы зажгли первое окно ✦":"Ваших огоньков: "+personalLights.size+" ✦";
-  if(currentWindow===n){lightButton.textContent="Огонек зажжен ✓";lightButton.disabled=true;}
+ if(!Number.isInteger(n)||n<1||n>99)return;
+ lights.add(n);saveLights();
+ const button=grid.querySelector('[data-window="'+n+'"]');if(button)button.classList.add("lit","user-lit");
+ byId("light-status").textContent=lights.size===1?"Вы зажгли первое окно ✦":"Ваших огоньков: "+lights.size+" ✦";
+ if(dialog.open&&selectedWindow===n){byId("dialog-light").textContent="Огонек зажжен ✓";byId("dialog-light").disabled=true;}
 }
-document.getElementById("dialog-close").addEventListener("click",()=>dialog.close());
-dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close();});
-dialog.addEventListener("close",()=>{if(lastFocus&&lastFocus.isConnected)lastFocus.focus();});
-lightButton.addEventListener("click",()=>lightWindow(currentWindow));
-document.getElementById("light-random").addEventListener("click",()=>{
-  const unlit=Array.from({length:99},(_,i)=>i+1).filter(n=>!personalLights.has(n));
-  const pool=unlit.length?unlit:Array.from({length:99},(_,i)=>i+1);
-  lightWindow(pool[Math.floor(Math.random()*pool.length)]);
-  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.getElementById("house").scrollIntoView({behavior:reduce?"instant":"smooth",block:"center"});
+byId("dialog-close").addEventListener("click",()=>dialog.close());
+dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
+dialog.addEventListener("close",()=>{if(lastFocus&&lastFocus.isConnected)lastFocus.focus()});
+byId("dialog-light").addEventListener("click",()=>lightWindow(selectedWindow));
+byId("light-random").addEventListener("click",()=>{
+ const unused=Array.from({length:99},(_,i)=>i+1).filter(n=>!lights.has(n));
+ const pool=unused.length?unused:Array.from({length:99},(_,i)=>i+1);
+ lightWindow(pool[Math.floor(Math.random()*pool.length)]);
+ const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ byId("house").scrollIntoView({behavior:reduced?"instant":"smooth",block:"center"});
 });
-if(personalLights.size)document.getElementById("light-status").textContent="Ваших огоньков: "+personalLights.size+" ✦";
-function snowfall(){
-  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  const target=document.getElementById("snowfall"),count=window.innerWidth<600?24:48;
-  for(let i=0;i<count;i++){
-    const flake=element("span","flake");
-    const duration=11+(i*17)%19;
-    flake.style.left=((i*73.37+13)%100)+"%";
-    flake.style.opacity=String(.15+((i*11)%9)/15);
-    flake.style.animationDuration=duration+"s";
-    flake.style.animationDelay=(-(i*3.7)%duration)+"s";
-    flake.style.setProperty("--drift",(((i*29)%180)-90)+"px");
-    flake.style.width=flake.style.height=(i%5===0?4:2)+"px";
-    target.append(flake);
-  }
+byId("dialog-share").addEventListener("click",async()=>{
+ const fragment=selectedWindow===null||selectedWindow===undefined?"#stories":"#window-"+selectedWindow;
+ const address=window.location.href.split("#")[0]+fragment;
+ try{await navigator.clipboard.writeText(address);byId("share-notice").textContent="Ссылка на окно скопирована";}
+ catch{byId("share-notice").textContent="Ссылка: "+address;}
+});
+storySearch.addEventListener("input",drawStories);
+storyFilter.addEventListener("change",drawStories);
+function snow(){
+ if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const layer=byId("snowfall"),count=window.innerWidth<600?24:48;
+ for(let i=0;i<count;i++){
+   const dot=make("span","flake"),duration=11+(i*17)%19;
+   dot.style.left=((i*73.37+13)%100)+"%";dot.style.opacity=String(.15+((i*11)%9)/15);
+   dot.style.animationDuration=duration+"s";dot.style.animationDelay=(-(i*3.7)%duration)+"s";
+   dot.style.setProperty("--drift",(((i*29)%180)-90)+"px");
+   dot.style.width=dot.style.height=(i%5===0?4:2)+"px";layer.append(dot);
+ }
 }
-async function loadStories(){
-  try{
-    const response=await fetch("./data/stories.json",{cache:"no-store"});
-    if(!response.ok)throw new Error("Missing stories");
-    const json=await response.json();
-    if(!Array.isArray(json))throw new Error("Malformed stories");
-    const clean=json.filter(s=>s&&(s.window===null||(Number.isInteger(s.window)&&s.window>=1&&s.window<=99))&&["name","title","author","description"].every(k=>typeof s[k]==="string"));
-    if(clean.length)stories=clean;
-  }catch{/* Embedded demo remains available without fetch. */}
-  renderWindows();renderStories();
+async function fetchStories(){
+ try{
+   const response=await fetch("./data/stories.json",{cache:"no-store"});
+   if(!response.ok)throw Error("Unavailable");
+   const raw=await response.json();
+   if(!Array.isArray(raw))throw Error("Invalid JSON");
+   const valid=raw.filter(s=>s&&(s.window===null||(Number.isInteger(s.window)&&s.window>=1&&s.window<=99))&&["id","name","title","author","description"].every(k=>typeof s[k]==="string"));
+   if(valid.length)stories=valid;
+ }catch{/* Keep offline preview. */}
+ drawHouse();drawStories();
+ const match=window.location.hash.match(/^#window-(\d+)$/);
+ if(match){const n=Number(match[1]);if(n>=1&&n<=99)openApartment(n);}
 }
-renderWindows();renderStories();snowfall();loadStories();
+if(lights.size)byId("light-status").textContent="Ваших огоньков: "+lights.size+" ✦";
+drawHouse();drawStories();snow();fetchStories();
