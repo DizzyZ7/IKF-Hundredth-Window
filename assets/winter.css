@@ -340,3 +340,10 @@ footer{background:#0b1927;border-top:1px solid #d7c5a133}
  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
  .snowfall{display:none!important}
 }
+
+/* 0.7: no giant oval in Safari full-page capture; an unobtrusive printable guide link */
+.booklet-link{display:inline-flex;align-items:center;gap:16px;margin-top:18px;padding:10px 0;border-bottom:1px solid #a4775d;color:#8e6050;font-size:12px;font-weight:700;line-height:1.5}
+.booklet-link:hover{color:#9c4e42;border-bottom-color:#9c4e42}
+.hero .scene{border-radius:0;background:transparent}
+.footer>div{flex-wrap:wrap;row-gap:9px}
+@media(max-width:560px){.booklet-link{font-size:11px}}

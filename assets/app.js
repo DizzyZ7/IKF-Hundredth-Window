@@ -10,7 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
-const SITE_EDITION="0.6";
+const SITE_EDITION="0.7";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -181,7 +181,7 @@ function snow(){
 }
 async function fetchStories(){
  try{
-   const response=await fetch("./data/stories.json?v=20261121-06",{cache:"no-store"});
+   const response=await fetch("./data/stories.json?v=20261121-07",{cache:"no-store"});
    if(!response.ok)throw Error("Unavailable");
    const raw=await response.json();
    if(!Array.isArray(raw))throw Error("Invalid JSON");
