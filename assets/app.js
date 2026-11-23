@@ -10,7 +10,7 @@ const demoStories=[{
 let stories=demoStories;
 let selectedStory=null,selectedWindow=null,lastFocus=null;
 const byId=id=>document.getElementById(id);
-const SITE_EDITION="0.9";
+const SITE_EDITION="1.1";
 const grid=byId("window-grid"),list=byId("story-grid"),dialog=byId("window-dialog");
 const storySearch=byId("story-search"),storyFilter=byId("story-filter");
 function make(tag,cls,content){const e=document.createElement(tag);if(cls)e.className=cls;if(content!==undefined)e.textContent=content;return e;}
@@ -108,6 +108,7 @@ function displayStory(s){
  profileLink.href="characters.html?id="+encodeURIComponent(s.characterId||s.id);
  const link=byId("dialog-story-link");
  if(validFicbook(s.ficbookUrl)){link.href=s.ficbookUrl;link.textContent="Читать на Фикбуке ↗";link.target="_blank";link.rel="noopener noreferrer";}
+ else if(s.previewUrl==="chapter-01.html"){link.href=s.previewUrl;link.textContent="Читать главу на сайте ↗";link.removeAttribute("target");link.removeAttribute("rel");}
  else {link.href="#stories";link.textContent="Глава скоро появится";link.removeAttribute("target");link.removeAttribute("rel");}
  updateLightControl(s.window);
  const choices=byId("dialog-stories");choices.replaceChildren();
@@ -193,7 +194,7 @@ function snow(){
 }
 async function fetchStories(){
  try{
-   const response=await fetch("./data/stories.json?v=20261121-09",{cache:"no-store"});
+   const response=await fetch("./data/stories.json?v=20261123-11",{cache:"no-store"});
    if(!response.ok)throw Error("Unavailable");
    const raw=await response.json();
    if(!Array.isArray(raw))throw Error("Invalid JSON");

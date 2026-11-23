@@ -1,6 +1,6 @@
 "use strict";
 /* IKF spoiler-safe public chronicle. Public episodes and relationships require editorial approval. */
-const VER="20261121-10";
+const VER="20261123-11";
 const $=id=>document.getElementById(id);
 function el(tag,cl,txt){const a=document.createElement(tag);if(cl)a.className=cl;if(txt!==undefined)a.textContent=txt;return a;}
 const anchorFallback=[
@@ -55,7 +55,9 @@ function paintDrafts(){
   const card=el("article","draft-card"),left=el("div");
   left.append(el("strong","",s.title),el("small","",s.name+" · "+s.author));
   const a=el("a","","Герой ↗");a.href="characters.html?id="+encodeURIComponent(characterId(s));
-  card.append(left,a);root.append(card);
+  card.append(left,a);
+  if(s.previewUrl==="chapter-01.html"){const read=el("a","","Читать на сайте ↗");read.href=s.previewUrl;card.append(read);}
+  root.append(card);
  }
 }
 function paintCharactersAndTies(){
