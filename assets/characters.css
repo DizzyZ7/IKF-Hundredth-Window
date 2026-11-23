@@ -115,3 +115,22 @@ footer{background:#0a1825;border-top:1px solid #d5bf9c29}
  .foot-inner{padding:25px 0;min-height:0;flex-direction:column;align-items:flex-start;gap:15px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.atmosphere{display:none}}
+
+/* 1.1 · Eira's family, pets and friends; no invented portraits */
+.family-section{margin-top:70px;padding-top:48px;border-top:1px solid #d4b68c55}
+.family-heading{max-width:780px;margin-bottom:30px}.family-heading h3{font-size:clamp(44px,5vw,64px);margin-bottom:15px}
+.family-heading>p:not(.eyebrow){font-size:13px;color:#c0d0cd;line-height:1.9}
+.family-label{color:#e6c08e;font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;margin:33px 0 14px}
+.family-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.family-card{min-width:0;background:linear-gradient(135deg,#293f50,#1b3142);padding:22px;border-radius:9px;border:1px solid #dbc09144}
+.family-card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.family-initial{width:45px;height:52px;flex:none;border:1px solid #e5bd8c77;border-radius:24px 24px 3px 3px;background:#865060;color:#f6dfbc;display:grid;place-items:center;font:33px "Cormorant Garamond",Georgia,serif}
+.family-card h4{font:600 29px/1.06 "Cormorant Garamond",Georgia,serif;color:#f6e8d4;margin:0 0 5px}
+.family-role{font-size:10px;color:#e8c99f}.family-occupation{display:block;font-size:11px;color:#e2bd91;margin-bottom:9px}
+.family-card p{font-size:12px;color:#cad9d7;line-height:1.85;margin:0}
+.keepsake-card{padding:23px 27px;margin-top:26px;border:1px solid #c39a7d7a;border-left:3px solid #c67f78;border-radius:6px;background:#7b4e4840}
+.keepsake-card small{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#e7c18e}
+.keepsake-card h4{font:600 33px "Cormorant Garamond",Georgia,serif;color:#fae5ca;margin:6px 0}
+.keepsake-card p{font-size:12px;color:#e4d8cc;line-height:1.9;margin:0}
+.chapter-draft-note{font-size:10px!important;color:#bbd0cb!important;margin-top:8px!important}
+@media(max-width:550px){.family-grid{grid-template-columns:1fr}.family-section{margin-top:50px;padding-top:34px}}

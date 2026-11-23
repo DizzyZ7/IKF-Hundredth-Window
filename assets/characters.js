@@ -1,6 +1,6 @@
 "use strict";
 /* Character archive: local JSON, no backend or trackers. All user-facing data is text-only. */
-const DATA_VERSION="20261121-09";
+const DATA_VERSION="20261123-11";
 const $=id=>document.getElementById(id);
 function el(tag,cls,label){const a=document.createElement(tag);if(cls)a.className=cls;if(label!==undefined)a.textContent=label;return a;}
 const offline=[{id:"eira-lindt",characterId:"eira-lindt",name:"Эйра Линдт",author:"ИКФ",window:70,title:"Там, где оставляют свет",description:"Картограф, которая знает: у «Альбатроса» 99 квартир.",ficbookUrl:null,locationId:"mayachnaya",profile:{age:28,occupation:"Специалист по картографии и адресному учету",tagline:"Она знает все адреса Люсхольма. Почти все.",quote:"Но впервые за долгое время ей захотелось ошибиться.",biography:["Эйра живет в квартире №70 на седьмом этаже дома «Альбатрос».","Она иронична, наблюдательна и добрее, чем старается казаться."],traits:["Ироничная","Наблюдательная","Добрая"]}}];
@@ -60,6 +60,7 @@ function renderProfile(id){
  const home=$("profile-apartment");
  home.href=Number.isInteger(s.window)?"./#window-"+s.window:"./#places";
  home.textContent=Number.isInteger(s.window)?"Посмотреть окно №"+s.window+" ↗":"Увидеть Люсхольм ↗";
+ renderFamily(p);
  const moments=$("profile-moments");moments.replaceChildren();
  const items=Array.isArray(p.moments)?p.moments.filter(x=>x&&typeof x.label==="string"&&typeof x.text==="string").slice(0,8):[];
  $("journey").hidden=!items.length;
@@ -76,6 +77,9 @@ function renderProfile(id){
   card.append(el("p","",entry.description||"Новая история из Люсхольма"));
   if(safeFicbook(entry.ficbookUrl)){
    const a=el("a","","Читать на Фикбуке ↗");a.href=entry.ficbookUrl;a.target="_blank";a.rel="noopener noreferrer";card.append(a);
+  }else if(entry.previewUrl==="chapter-01.html"){
+   const a=el("a","","Читать рабочую редакцию на сайте ↗");a.href=entry.previewUrl;card.append(a);
+   card.append(el("p","chapter-draft-note","Фикбук: публикация еще не подтверждена."));
   }else card.append(el("span","","Ссылка появится после публикации"));
   chapters.append(card);
  });
@@ -85,6 +89,35 @@ function renderProfile(id){
   catch{$("share-feedback").textContent="Скопируй ссылку: "+shareUrl;}
  };
 }
+
+function renderFamily(p){
+ const buckets=[
+  ["profile-family",Array.isArray(p.family)?p.family:[]],
+  ["profile-pets",Array.isArray(p.pets)?p.pets:[]],
+  ["profile-acquaintances",Array.isArray(p.acquaintances)?p.acquaintances:[]]
+ ];
+ $("family-section").hidden=buckets.every(([,people])=>people.length===0)&&!p.keepsake;
+ for(const [id,people] of buckets){
+  const root=$(id);root.replaceChildren();
+  for(const person of people.slice(0,14)){
+   if(!person||typeof person.name!=="string")continue;
+   const card=el("article","family-card"),top=el("div","family-card-top");
+   const letter=el("span","family-initial",Array.from(person.name)[0]||"?");
+   const info=el("div");info.append(el("h4","",person.name));
+   const sub=[person.relation||person.kind,Number.isInteger(person.age)?person.age+" лет":null].filter(Boolean).join(" · ");
+   if(sub)info.append(el("span","family-role",sub));
+   top.append(letter,info);card.append(top);
+   if(person.occupation)card.append(el("small","family-occupation",person.occupation));
+   if(person.description)card.append(el("p","",person.description));
+   root.append(card);
+  }
+ }
+ const memory=$("profile-keepsake");memory.replaceChildren();
+ if(p.keepsake&&typeof p.keepsake.name==="string"){
+  memory.hidden=false;memory.append(el("small","","Семейная традиция"),el("h4","",p.keepsake.name),el("p","",p.keepsake.description||""));
+ }else memory.hidden=true;
+}
+
 function snow(){
  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
  const target=$("atmosphere");const count=window.innerWidth<550?15:25;
