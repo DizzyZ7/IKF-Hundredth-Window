@@ -10,7 +10,7 @@ function cid(s){return typeof s.characterId==="string"&&/^[a-z0-9-]{1,80}$/.test
 function groups(){const out=new Map();for(const s of stories){const k=cid(s);if(!out.has(k))out.set(k,[]);out.get(k).push(s);}return out;}
 function floors(n){return Number.isInteger(n)?Math.floor((n-1)/11)+1:null;}
 function location(s){return Number.isInteger(s.window)?"Квартира №"+s.window+" · "+floors(s.window)+"-й этаж":({mayachnaya:"Маячная улица","fridas-bakery":"Пекарня Фриды",harbor:"Северный порт"}[s.locationId]||"Люсхольм");}
-function urlFor(k){return "characters.html?id="+encodeURIComponent(k);}
+function urlFor(k){return "characters.html?id="+encodeURIComponent(k)+"#profile-view";}
 function safeFicbook(u){return typeof u==="string"&&/^https:\/\/(www\.)?ficbook\.net\//i.test(u);}
 function firstLetter(str){return Array.from(String(str||"?").trim())[0]?.toLocaleUpperCase("ru")||"?";}
 function addTextList(parent,items,cls,limit=20){for(const item of items.slice(0,limit)){if(typeof item==="string"&&item.trim())parent.append(el("span",cls,item));}}
@@ -135,6 +135,7 @@ async function start(){
  const id=new URLSearchParams(window.location.search).get("id");
  if(id&&/^[a-z0-9-]{1,80}$/.test(id))renderProfile(id);
  else if(id)renderProfile("not-found");
+ else renderProfile("eira-lindt");
 }
 $("character-search").addEventListener("input",renderDirectory);
 snow();start();

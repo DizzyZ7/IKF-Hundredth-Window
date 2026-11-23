@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/characters.css?v=20261123-11">
-<script src="assets/characters.js?v=20261123-11" defer></script>
+<link rel="stylesheet" href="assets/characters.css?v=20261123-12">
+<script src="assets/characters.js?v=20261123-12" defer></script>
 </head>
 <body>
 <a href="#content" class="skip-link">Перейти к содержимому</a>
@@ -30,7 +30,7 @@
    <p class="eyebrow">Литературный архив · ИКФ</p>
    <h1>Люди, которые<br><em>оставляют свет</em></h1>
    <p class="intro-lead">За каждым окном — жизнь. Здесь мы собираем истории, характеры и маленькие чудеса героев Люсхольма. Каждому автору найдется место.</p>
-   <div class="intro-cta"><a href="#directory" class="cta cta-gold">Познакомиться с героями ↓</a><a href="./#stories" class="cta cta-quiet">К историям ↗</a></div>
+   <div class="intro-cta"><a href="#directory" class="cta cta-gold">Познакомиться с героями ↓</a><a href="#profile-view" class="cta cta-quiet">Эйра и ее семья ↓</a><a href="./#stories" class="cta cta-quiet">К историям ↗</a></div>
   </div>
   <div class="intro-art" aria-hidden="true">
     <div class="roofline"></div><div class="art-window"><i class="glass-glow"></i><i class="frame-vertical"></i><i class="frame-horizontal"></i><i class="art-candle"></i></div>
@@ -42,41 +42,59 @@
  <div class="wrap">
   <div class="section-head"><div><p class="eyebrow">Голоса города</p><h2>Наши <em>герои</em></h2></div><p>Сначала знакомимся с Эйрой Линдт. Новые участники будут появляться по мере согласования и публикации глав.</p></div>
   <div class="finder"><label for="character-search">Найти героя или автора</label><input id="character-search" type="search" placeholder="Имя, глава, автор…" autocomplete="off"><span id="character-count" aria-live="polite"></span></div>
-  <div class="directory-grid" id="character-grid" aria-live="polite"><p class="loading">Открываем архив Люсхольма…</p></div>
+  <div class="directory-grid" id="character-grid" aria-live="polite"><article class="character-tile" data-character="eira-lindt">
+ <div class="tile-top"><div class="tile-initial">Э</div><span class="tile-number">№70</span></div>
+ <div class="tile-body"><h3>Эйра Линдт</h3><p>Она знает все адреса Люсхольма. Почти все.</p><a class="tile-cta" href="#profile-view">Читать досье ↗</a></div>
+</article></div>
  </div>
 </section>
-<section id="profile-view" class="profile-section" hidden aria-labelledby="profile-name">
+<section id="profile-view" class="profile-section" aria-labelledby="profile-name">
  <div class="wrap">
-  <div class="profile-nav"><a href="characters.html" id="profile-back">← Все герои</a><span>Личное дело · Люсхольм</span></div>
+  <div class="profile-nav"><a href="#directory" id="profile-back">← Наши герои</a><span>Личное дело · Люсхольм</span></div>
   <div class="profile-layout">
    <div class="profile-poster">
     <div class="poster-topline">ЛЮСХОЛЬМ · 31.12.2026</div>
     <div class="portrait-window" id="portrait-window"><span id="portrait-letter" aria-hidden="true">Э</span></div>
-    <p id="portrait-caption" class="portrait-caption">Портрет персонажа</p>
+    <p id="portrait-caption" class="portrait-caption">Иллюстрация Эйры готовится</p>
     <div class="poster-bottom"><span id="poster-location">АЛЬБАТРОС</span><span id="poster-number">№70</span></div>
    </div>
    <div class="profile-content">
     <p class="eyebrow">Знакомство с персонажем</p>
     <h2 id="profile-name">Эйра Линдт</h2>
-    <p id="profile-tagline" class="profile-tagline"></p>
-    <div class="profile-meta" id="profile-meta"></div>
-    <div id="profile-traits" class="profile-traits"></div>
-    <div id="profile-bio" class="profile-bio"></div>
-    <blockquote id="profile-quote" class="profile-quote" hidden></blockquote>
-    <div class="profile-actions"><a id="profile-apartment" class="cta cta-gold" href="./#house">Найти окно ↗</a><button type="button" class="cta cta-quiet" id="profile-share">Поделиться историей</button></div>
+    <p id="profile-tagline" class="profile-tagline">Она знает все адреса Люсхольма. Почти все.</p>
+    <div class="profile-meta" id="profile-meta"><span>Квартира №70 · 7-й этаж</span><span>Автор: ИКФ</span><span>28 лет</span><span>Специалист по городской картографии и адресному учету</span></div>
+    <div id="profile-traits" class="profile-traits"><span>Наблюдательная</span><span>Ироничная</span><span>Упрямая</span><span>Заботливая</span><span>Любит порядок</span><span>Учится принимать помощь</span></div>
+    <div id="profile-bio" class="profile-bio"><p>Эйра, 28 лет, живет в квартире №70 на седьмом этаже дома «Альбатрос» по Маячной улице, 7. Работает с городскими картами и адресами, любит порядок, старые карты, крепкий чай и зимние прогулки у залива.</p>
+<p>Спокойная с виду, ироничная, наблюдательная и немного упрямая. Эйра скрывает усталость за шутками, не всегда умеет просить помощи, но умеет заботиться о других.</p>
+<p>У нее есть любящая семья: мама Сольвейг, папа Арвид, младшая сестра Лив и бабушка Руна. Они ждут ее к праздничному ужину. Дома с Эйрой живут корги Крендель и кот Шафран.</p>
+<p>Когда в «Альбатросе» гаснет свет, фонарь отца продолжает гореть. Эйра помогает соседям и пытается разобраться со странным приглашением из квартиры №100.</p></div>
+    <blockquote id="profile-quote" class="profile-quote">Иногда людям просто необходим свет. И кто-нибудь рядом.</blockquote>
+    <div class="profile-actions"><a id="profile-apartment" class="cta cta-gold" href="./#window-70">Посмотреть окно №70 ↗</a><a class="cta cta-quiet" href="chapter-01.html">Читать главу ↗</a><button type="button" class="cta cta-quiet" id="profile-share">Поделиться историей</button></div>
     <p class="share-feedback" id="share-feedback" role="status" aria-live="polite"></p>
    </div>
   </div>
-  <section class="family-section" id="family-section" hidden aria-labelledby="family-title">
-   <div class="family-heading"><p class="eyebrow">Не одна в этом городе</p><h3 id="family-title">Ее <em>маленький мир</em></h3><p>Родные, хвостатые друзья, соседи. Каждый помогает сделать жизнь Эйры настоящей, а Люсхольм — общим.</p></div>
-   <p class="family-label">Семья</p><div class="family-grid" id="profile-family"></div>
-   <p class="family-label">Домашние любимцы</p><div class="family-grid" id="profile-pets"></div>
-   <p class="family-label">Соседи и знакомые</p><div class="family-grid" id="profile-acquaintances"></div>
-   <div class="keepsake-card" id="profile-keepsake" hidden></div>
+  <section class="family-section" id="family-section" aria-labelledby="family-title">
+   <div class="family-heading"><p class="eyebrow">Не одна в этом городе</p><h3 id="family-title">Ее <em>маленький мир</em></h3><p>Родные, хвостатые друзья, соседи. Эти персонажи — часть первой главы Эйры, а не отдельные авторы сборника.</p></div>
+   <p class="family-label">Семья</p><div class="family-grid" id="profile-family"><article class="family-card"><div class="family-card-top"><span class="family-initial">С</span><div><h4>Сольвейг Линдт</h4><span class="family-role">Мама · 54 лет</span></div></div><small class="family-occupation">Городская библиотека</small><p>Сдержанная, любящая, временами чересчур заботливая. Ждет Эйру к новогоднему ужину.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">А</span><div><h4>Арвид Линдт</h4><span class="family-role">Папа · 57 лет</span></div></div><small class="family-occupation">Сигнальное оборудование северного порта</small><p>Немногословный и надежный. Подарил дочери фонарь и заменил механизм на аккумуляторный.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">Л</span><div><h4>Лив Линдт</h4><span class="family-role">Младшая сестра · 23 лет</span></div></div><small class="family-occupation">Изучает звукорежиссуру</small><p>Смешливая, прямолинейная, собирает записи звуков города и помогает Эйре стать открытее.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">Р</span><div><h4>Руна Линдт</h4><span class="family-role">Бабушка · 77 лет</span></div></div><small class="family-occupation">Бывшая почтальонка</small><p>Помнит старые улицы Люсхольма и рассказы о фонарях на окнах. Ее воспоминания не всегда достоверны.</p></article></div>
+   <p class="family-label">Домашние любимцы</p><div class="family-grid" id="profile-pets"><article class="family-card"><div class="family-card-top"><span class="family-initial">К</span><div><h4>Крендель</h4><span class="family-role">Корги · 4 лет</span></div></div><p>Рыже-белый пес с короткими лапами и огромными ушами. Любит людей, снег, носки и чужие пакеты.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">Ш</span><div><h4>Шафран</h4><span class="family-role">Рыжий кот · 6 лет</span></div></div><p>Кот с янтарными глазами. Любит подоконники и тепло. Во время отключения света сбегает на восьмой этаж.</p></article></div>
+   <p class="family-label">Соседи и знакомые</p><div class="family-grid" id="profile-acquaintances"><article class="family-card"><div class="family-card-top"><span class="family-initial">Ф</span><div><h4>Фрида</h4><span class="family-role">Хозяйка пекарни</span></div></div><p>Незаметно заботится о людях; кладет Эйре третий кардамоновый узелок.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">Г</span><div><h4>Господин Берг</h4><span class="family-role">Сосед</span></div></div><p>Во время отключения света роняет пакет с апельсинами на лестнице.</p></article>
+<article class="family-card"><div class="family-card-top"><span class="family-initial">М</span><div><h4>Миккель</h4><span class="family-role">Знакомый Эйры</span></div></div><p>Помогает Бергу собрать апельсины; позднее спрашивает Эйру о загадочном письме. Возраст, фамилия и квартира не определены.</p></article></div>
+   <div class="keepsake-card" id="profile-keepsake"><small>Семейная традиция</small><h4>Фонарь отца</h4><p>Медная ножка, матовый плафон и темно-красный абажур. После замены механизма на аккумулятор светит мягким янтарно-розовым светом даже при отключении электричества.</p></div>
   </section>
   <div class="profile-lower">
-   <section class="journey" id="journey" hidden><p class="eyebrow">Страницы одной ночи</p><h3>История героя</h3><div id="profile-moments" class="moments"></div></section>
-   <section class="chapters"><p class="eyebrow">Авторские главы</p><h3>Где прочитать</h3><div id="profile-chapters" class="chapter-list"></div></section>
+   <section class="journey" id="journey"><p class="eyebrow">Страницы одной ночи</p><h3>История героя</h3><div id="profile-moments" class="moments"><div class="moment"><div class="moment-number">01</div><div><strong>Пекарня Фриды</strong><p>Эйра покупает два кардамоновых узелка, но получает третий — для кого-нибудь.</p></div></div>
+<div class="moment"><div class="moment-number">02</div><div><strong>Дома с Кренделем и Шафраном</strong><p>В квартире №70 Эйру ждут любимые питомцы и семейные сообщения.</p></div></div>
+<div class="moment"><div class="moment-number">03</div><div><strong>Когда гаснет свет</strong><p>Фонарь продолжает работать, а Эйра помогает Бергу и Миккелю собрать покупки.</p></div></div>
+<div class="moment"><div class="moment-number">04</div><div><strong>Побег Шафрана</strong><p>Эйра обнаруживает кота на восьмом этаже и видит, как соседи зажигают окна.</p></div></div>
+<div class="moment"><div class="moment-number">05</div><div><strong>Письмо из сотой квартиры</strong><p>У двери появляется загадочное приглашение, а затем с вопросом о письме приходит Миккель.</p></div></div></div></section>
+   <section class="chapters"><p class="eyebrow">Авторские главы</p><h3>Где прочитать</h3><div id="profile-chapters" class="chapter-list">
+     <article class="chapter-card"><span>Первая глава · рабочая редакция доступна на сайте</span><h4>Там, где оставляют свет</h4><p>Эйра Линдт, специалист по картографии, встречает Новый год в квартире №70 с корги Кренделем и котом Шафраном. После отключения света она помогает соседям и получает письмо из несуществующей квартиры №100.</p><a href="chapter-01.html">Читать рабочую редакцию на сайте ↗</a><p class="chapter-draft-note">Фикбук: публикация еще не подтверждена.</p></article>
+   </div></section>
   </div>
  </div>
 </section>
